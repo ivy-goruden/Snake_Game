@@ -1,15 +1,19 @@
+#pragma once
 #include <iostream>
+
 #include "../globals.h"
-namespace S21 {
+#include "gameModel.h"
+namespace s21 {
 
 class Render {
  protected:
-  GameModel *model;
+  s21::GameModel *model;
+
  public:
-  virtual UserAction_t GetAction();
-  virtual void UpdateState(GameModel *model);
-    
+  virtual UserAction_t GetAction() = 0;
+  virtual void UpdateState(s21::GameModel *model) = 0;
+
   virtual ~Render() = default;
 };
 
-}  // namespace S21
+}  // namespace s21

@@ -56,5 +56,5 @@ clean:
 	rm -f *.o *.a  *.out game
 
 snake:
-	g++ brick_game/snake/snake.cpp gui/game.cpp -o game
+	g++ brick_game/snake/snake.cpp gui/game.cpp -o game -lncurses
 	./game

@@ -1,5 +1,7 @@
+#pragma once
 #include <array>
 #include <list>
+
 #include "../globals.h"
 #include "../models/gameModel.h"
 
@@ -10,8 +12,8 @@ class Snake_Game : public GameModel {
  private:
   int lenght;
   int WIDTH = width;
-  int HEIGHT = height; 
-  std::list<Position> &body;
+  int HEIGHT = height;
+  std::list<Position> body;
   int direction;
   Position apple;
   bool ateApple;
@@ -23,8 +25,8 @@ class Snake_Game : public GameModel {
     SIZE,
   } State;
 
-  typedef bool (*Trigger)(); //функция триггер для перехода между состояниями FSM
-  typedef void (*Handler)(UserAction_t); //функция триггер для перехода между состояниями FSM
+  typedef bool (Snake_Game::*Trigger)();
+  typedef void (Snake_Game::*Handler)(UserAction_t);
 
   std::array<std::array<Trigger, SIZE>, SIZE> FSM_Triggers;
   std::array<Handler, SIZE> FSM_Handlers;
@@ -35,32 +37,21 @@ class Snake_Game : public GameModel {
   void Eating_Handler(UserAction_t);
   bool FoundApple();
   bool Smashed();
-  void IsWin();
-  void isOver();
+  bool isWin();
+  bool isOver();
   void Forward();
   void NewApple();
-
+  Position getNextPos();
+  bool Yes();
+  bool No();
 
  public:
-  int LEFT = 0;
-  int UP = 1;
-  int RIGHT = 2;
-  int DOWN = 3;
+  static const int LEFT = 0;
+  static const int UP = 1;
+  static const int RIGHT = 2;
+  static const int DOWN = 3;
 
-
-  Snake_Game<width, height>() {
-    this->cur_state = ST_MOVE;
-    this->FSM_Triggers = {
-      // ST_MOVE  ST_OVER     ST_EATING
-      {no(),      isOver(),   FoundApple()}, //   ST_MOVE
-      {no(),      no(),       no()},         //   ST_OVER
-      {yes(),     no(),       no()}          //   ST_EATING
-    };
-    this->FSM_Handlers = {
-      Move_Handler(),
-      Over_Handler(),
-      Eating_Handler()
-    };
-  };
+  Snake_Game();
+  GameModel* updateCurrentState(UserAction_t action) override;
 };
-}  // namespace S21
+}  // namespace s21

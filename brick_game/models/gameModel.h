@@ -1,15 +1,16 @@
+#pragma once
 #include <iostream>
-namespace S21 {
+
+#include "../globals.h"
+namespace s21 {
 
 class GameModel {
-  protected:
-    long timer;
+ protected:
+  long timer;
 
  public:
-  GameModel* updateCurrentState(UserAction_t);
-  long GetTimer(){
-    return this->timer;
-  };
+  virtual GameModel* updateCurrentState(UserAction_t) = 0;
+  long GetTimer() { return this->timer; };
   virtual ~GameModel() = default;
 };
-}  // namespace S21
+}  // namespace s21

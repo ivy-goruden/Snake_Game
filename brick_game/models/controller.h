@@ -1,51 +1,53 @@
+#pragma once
+#include <sys/time.h>
+
+#include "../globals.h"
 #include "gameModel.h"
 #include "render.h"
 namespace s21 {
 
 class Controller {
  protected:
-  GameModel* model;
+  s21::GameModel* model;
   Render* render;
   bool running = true;
-  long lastTime = {0};
+  timeval lastTime = {0};
 
  public:
   // Pure virtual function
   void Run();
   void Quit();
   bool Tick();
-  Controller(GameModel* model, Render* render){
+  Controller(GameModel* model, Render* render) {
     this->model = model;
     this->render = render;
   }
   ~Controller() = default;
 };
 
-void s21::Controller::Quit(){
-  running = false;
-}
+void s21::Controller::Quit() { running = false; }
 
-void s21::Controller::Run(){
-  while (true){
+void s21::Controller::Run() {
+  while (true) {
     UserAction_t action = this->render->GetAction();
-    if (action){
-      if (action == Terminate){
+    if (action) {
+      if (action == Terminate) {
         return;
       }
-      GameModel *newGame = this->model->updateCurrentState(action);
-      c.render->UpdateState(newGame);
+      GameModel* newGame = this->model->updateCurrentState(action);
+      this->render->UpdateState(newGame);
     }
-    if (this->Tick()){
-      GameModel *newGame = this->model->updateCurrentState(Tick);
-      c.render->UpdateState(newGame);
+    if (this->Tick()) {
+      GameModel* newGame = this->model->updateCurrentState(::Tick);
+      this->render->UpdateState(newGame);
     }
   }
 }
 
-bool s21::Controller::Tick(){
-  long interval = this->model->GetTimer()
-  //нет таймера
-  if interval == 0{
+bool s21::Controller::Tick() {
+  long interval = this->model->GetTimer();
+  // нет таймера
+  if (interval == 0) {
     return 0;
   }
   struct timeval now;
@@ -60,4 +62,4 @@ bool s21::Controller::Tick(){
   }
   return 0;
 }
-}  // namespace S21
+}  // namespace s21
