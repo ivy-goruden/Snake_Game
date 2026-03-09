@@ -54,3 +54,7 @@ dist:
 
 clean:
 	rm -f *.o *.a  *.out game
+
+snake:
+	g++ brick_game/snake/snake.cpp gui/game.cpp -o game
+	./game

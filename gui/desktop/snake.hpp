@@ -63,23 +63,24 @@ class Snake_Render : public Render{
         }
 
         void WaitingScreen_Handler(){
-
+            mvwprintw(this->window, 2, 2, "WAITING");
         }
 
 
         void MoveScreen_Handler(){
-
+            mvwprintw(this->window, 2, 2, "MOVE");
         }
 
         void PauseScreen_Handler(){
+            mvwprintw(this->window, 2, 2, "PAUSE");
         }
 
         void WinScreen_Handler(){
-            
+            mvwprintw(this->window, 2, 2, "WIN");
         }
 
         void LoseScreen_Handler(){
-            
+            mvwprintw(this->window, 2, 2, "LOSE");
         }
 
 
@@ -137,6 +138,7 @@ class Snake_Render : public Render{
         }
 
         ~Snake_Render() override{
+            delwin(this->window);
             endwin();
         }
 
