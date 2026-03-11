@@ -1,9 +1,9 @@
 #pragma once
 #include <sys/time.h>
 
-#include "../globals.h"
-#include "gameModel.h"
-#include "render.h"
+#include "brick_game/globals.h"
+#include "brick_game/models/gameModel.h"
+#include "brick_game/models/render.h"
 namespace s21 {
 
 class Controller {
@@ -11,7 +11,7 @@ class Controller {
   s21::GameModel* model;
   Render* render;
   bool running = true;
-  timeval lastTime = {0};
+  timeval lastTime = {0, 0};
 
  public:
   // Pure virtual function

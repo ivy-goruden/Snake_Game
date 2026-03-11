@@ -1,9 +1,11 @@
 #pragma once
 #include <ncurses.h>
+#include <unistd.h>
 
+#include <cstring>
 #include <map>
 
-#include "../../brick_game/models/render.h"
+#include "brick_game/models/render.h"
 
 namespace s21 {
 
@@ -18,7 +20,7 @@ class Snake_Render : public s21::Render {
   const int START_Y = start_y;
   const int START_X = start_x;
   State cur_state;
-  WINDOW *window;
+  WINDOW* window;
   std::map<State, InputHandler> input_handlers = {
       {ST_WAITING, &Snake_Render::Waiting_Handler},
       {ST_MOVE, &Snake_Render::Move_Handler},
@@ -34,15 +36,17 @@ class Snake_Render : public s21::Render {
 
   bool Waiting_Handler(int key) {
     if (key == 's') {
-      this->cur_state = ST_MOVE;
-      return true;
+      ChangeState(ST_MOVE);
     }
-    return 0;
+    if (key != ERR && key != 'q') {
+      return true;  // ничего не делаем, если нажата другая клавиша
+    }
+    return false;
   }
 
   bool Move_Handler(int key) {
     if (key == 'p') {
-      this->cur_state = ST_PAUSE;
+      ChangeState(ST_PAUSE);
       return true;
     }
     return 0;
@@ -50,48 +54,87 @@ class Snake_Render : public s21::Render {
 
   bool Pause_Handler(int key) {
     if (key == 'p') {
-      this->cur_state = ST_MOVE;
-      return true;
+      ChangeState(ST_MOVE);
     }
-    return 0;
+    if (key != ERR && key != 'q') {
+      return true;  // ничего не делаем, если нажата другая клавиша
+    }
+    return false;
   }
 
-  bool Win_Handler(int key) { return 0; }
+  bool Win_Handler(int key) {
+    if (key == KEY_ENTER) {
+      ChangeState(ST_WAITING);
+    }
+    if (key != ERR && key != 'q') {
+      return true;  // ничего не делаем, если нажата другая клавиша
+    }
+    return false;
+  }
 
-  bool Lose_Handler(int key) { return 0; }
+  bool Lose_Handler(int key) {
+    if (key == KEY_ENTER) {
+      ChangeState(ST_WAITING);
+    }
+    if (key != ERR && key != 'q') {
+      return true;  // ничего не делаем, если нажата другая клавиша
+    }
+    return false;
+  }
 
-  void WaitingScreen_Handler() { mvwprintw(this->window, 2, 2, "WAITING"); }
+  void WaitingScreen_Handler() {
+    const char* msg = "PRESS S";
+    const char* msg2 = "TO START ";
+    int x = (this->WIDTH - sizeof(msg) + 1) / 2;
+    int y = this->HEIGHT / 2;
+    mvwprintw(this->window, y, x, msg);
+    x = (this->WIDTH - sizeof(msg2) + 1) / 2;
+    mvwprintw(this->window, y + 1, x, msg2);
+  }
 
-  void MoveScreen_Handler() { mvwprintw(this->window, 2, 2, "MOVE"); }
+  void MoveScreen_Handler() {
+    std::list<Position> body = this->model->GetBody();
+    int rowsPerSeg = this->HEIGHT / this->model->HEIGHT;
+    int colsPerSeg = this->WIDTH / this->model->WIDTH;
+    for (const auto& pos : body) {
+      for (int i = 0; i < rowsPerSeg; ++i) {
+        for (int j = 0; j < colsPerSeg; ++j) {
+          mvwprintw(this->window, pos.y * rowsPerSeg + i,
+                    pos.x * colsPerSeg + j, "O");
+        }
+      }
+    }
+  }
 
-  void PauseScreen_Handler() { mvwprintw(this->window, 2, 2, "PAUSE"); }
+  void PauseScreen_Handler() { mvwprintw(this->window, 2, 2, "PAUSE  "); }
 
-  void WinScreen_Handler() { mvwprintw(this->window, 2, 2, "WIN"); }
+  void WinScreen_Handler() { mvwprintw(this->window, 2, 2, "WIN    "); }
 
-  void LoseScreen_Handler() { mvwprintw(this->window, 2, 2, "LOSE"); }
+  void LoseScreen_Handler() { mvwprintw(this->window, 2, 2, "LOSE   "); }
 
  public:
-  Snake_Render(s21::GameModel *mdl) {
+  Snake_Render(s21::GameModel* mdl) {
     this->model = mdl;
     this->cur_state = ST_WAITING;
+    initscr();
+    cbreak();
+    noecho();
+    keypad(stdscr, TRUE);
+    nodelay(stdscr, TRUE);
     this->window =
         newwin(this->HEIGHT, this->WIDTH, this->START_Y, this->START_X);
-    if (initscr() == nullptr) {
-      cbreak();               // отключаем буферизацию строк
-      noecho();               // не отображать вводимые символы
-      keypad(stdscr, TRUE);   // включаем функциональные клавиши
-      nodelay(stdscr, TRUE);  // неблокирующий ввод (опционально)
-    }
   };
 
   InputHandler GetInputHandler() { return input_handlers[this->cur_state]; }
 
   UserAction_t GetAction() override {
+    usleep(20000);
     int ch = getch();
     UserAction_t action = No_Action;
 
     InputHandler handle = this->GetInputHandler();
     if (handle && (this->*handle)(ch)) {
+      Draw();  // перерисовываем экран после обработки ввода
       return action;
     }  // если клавиша перехвачена интерфесом - игнорируем
 
@@ -124,14 +167,22 @@ class Snake_Render : public s21::Render {
     return action;
   }
 
-  void UpdateState(s21::GameModel *model) override {
+  void UpdateState(s21::GameModel* model) override {
     this->model = model;
+    Draw();
+  }
+
+  void Draw() {
     ScreenHandler drawF = this->screen_handlers[this->cur_state];
     if (drawF) {
       (this->*drawF)();
+      box(this->window, 0, 0);
       wrefresh(this->window);
+      write_log("RUNNING draw function");
     }
   }
+
+  void ChangeState(State state) { this->cur_state = state; }
 
   ~Snake_Render() override {
     delwin(this->window);

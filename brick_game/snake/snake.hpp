@@ -2,8 +2,8 @@
 #include <array>
 #include <list>
 
-#include "../globals.h"
-#include "../models/gameModel.h"
+#include "brick_game/globals.h"
+#include "brick_game/models/gameModel.h"
 
 namespace s21 {
 
@@ -11,8 +11,6 @@ template <size_t width, size_t height>
 class Snake_Game : public GameModel {
  private:
   int lenght;
-  int WIDTH = width;
-  int HEIGHT = height;
   std::list<Position> body;
   int direction;
   Position apple;
@@ -44,12 +42,15 @@ class Snake_Game : public GameModel {
   Position getNextPos();
   bool Yes();
   bool No();
+  std::list<Position> GetBody();
 
  public:
   static const int LEFT = 0;
   static const int UP = 1;
   static const int RIGHT = 2;
   static const int DOWN = 3;
+  int WIDTH = width;
+  int HEIGHT = height;
 
   Snake_Game();
   GameModel* updateCurrentState(UserAction_t action) override;

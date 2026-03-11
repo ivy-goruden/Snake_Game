@@ -1,6 +1,6 @@
 #include "snake.hpp"
 
-#include "../globals.h"
+#include "brick_game/globals.h"
 
 namespace s21 {
 
@@ -10,6 +10,7 @@ Snake_Game<width, height>::Snake_Game() {
   this->direction = RIGHT;
   this->cur_state = ST_MOVE;
   this->ateApple = false;
+  this->timer = 1000000;
 
   // Initialize body
   for (int i = 0; i < this->lenght; ++i) {
@@ -80,7 +81,7 @@ template <size_t width, size_t height>
 void Snake_Game<width, height>::Over_Handler(UserAction_t) {}
 
 template <size_t width, size_t height>
-void s21::Snake_Game<width, height>::Eating_Handler(UserAction_t action) {
+void s21::Snake_Game<width, height>::Eating_Handler(UserAction_t) {
   this->ateApple = true;
   this->NewApple();
 }
@@ -107,8 +108,9 @@ bool s21::Snake_Game<width, height>::Smashed() {
 
 template <size_t width, size_t height>
 bool s21::Snake_Game<width, height>::isWin() {
-  return body.size() >= s21::Snake_Game<width, height>::HEIGHT *
-                            s21::Snake_Game<width, height>::WIDTH;
+  return body.size() >=
+         static_cast<std::size_t>(s21::Snake_Game<width, height>::HEIGHT) *
+             static_cast<std::size_t>(s21::Snake_Game<width, height>::WIDTH);
 }
 
 template <size_t width, size_t height>
@@ -184,7 +186,12 @@ bool Snake_Game<width, height>::No() {
   return false;
 }
 
+template <size_t width, size_t height>
+std::list<Position> Snake_Game<width, height>::GetBody() const {
+  return this->body;
+}
+
 // Explicit instantiation
-template class Snake_Game<10, 20>;
+template class s21::Snake_Game<10, 20>;
 
 }  // namespace s21

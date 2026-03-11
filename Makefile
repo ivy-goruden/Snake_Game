@@ -1,5 +1,5 @@
 TEST_SRCS := $(wildcard tests/*.c)
-FLAGS := -Werror -Wextra -Wall -std=c11 -D_DEFAULT_SOURCE
+FLAGS := -Werror -Wextra -Wall -D_DEFAULT_SOURCE -I ./
 BUILD = ../build/
 all:
 	make clean;
@@ -56,5 +56,5 @@ clean:
 	rm -f *.o *.a  *.out game
 
 snake:
-	g++ brick_game/snake/snake.cpp gui/game.cpp -o game -lncurses
+	g++ $(FLAGS) brick_game/snake/snake.cpp brick_game/globals.cpp gui/game.cpp -o game -lncurses
 	./game

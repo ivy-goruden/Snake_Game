@@ -28,10 +28,6 @@ typedef struct Position {
   bool operator!=(const Position& other) const {
     return x != other.x || y != other.y;
   }
-
-  Position operator=(const Position& other) {
-    return Position{other.x, other.y};
-  }
 } Position;
 
 template <typename T>
@@ -41,5 +37,8 @@ T random(T range_from, T range_to) {
   std::uniform_int_distribution<T> distr(range_from, range_to);
   return distr(generator);
 }
+
+void init_log();
+void write_log(const char* fmt, ...);
 
 #endif
