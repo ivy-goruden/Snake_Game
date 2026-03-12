@@ -34,11 +34,11 @@ void s21::Controller::Run() {
       if (action == Terminate) {
         return;
       }
-      GameModel* newGame = this->model->updateCurrentState(action);
+      Frontend_Interface* newGame = this->model->updateCurrentState(action);
       this->render->UpdateState(newGame);
     }
     if (this->Tick()) {
-      GameModel* newGame = this->model->updateCurrentState(::Tick);
+      Frontend_Interface* newGame = this->model->updateCurrentState(::Tick);
       this->render->UpdateState(newGame);
     }
   }

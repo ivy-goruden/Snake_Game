@@ -4,8 +4,7 @@
 
 namespace s21 {
 
-template <size_t width, size_t height>
-Snake_Game<width, height>::Snake_Game() {
+Snake_Game::Snake_Game() {
   this->lenght = 4;
   this->direction = RIGHT;
   this->cur_state = ST_MOVE;
@@ -39,17 +38,14 @@ Snake_Game<width, height>::Snake_Game() {
   this->NewApple();
 }
 
-template <size_t width, size_t height>
-GameModel* s21::Snake_Game<width, height>::updateCurrentState(
-    UserAction_t action) {
+Frontend_Interface* s21::Snake_Game::updateCurrentState(UserAction_t action) {
   const auto& triggers = this->FSM_Triggers[this->cur_state];
   if (this->cur_state < SIZE) {
-    s21::Snake_Game<width, height>::Handler main_func =
-        this->FSM_Handlers[cur_state];
+    s21::Snake_Game::Handler main_func = this->FSM_Handlers[cur_state];
     if (main_func) (this->*main_func)(action);  // выполнение функции состояния
     for (std::size_t i = 0; i < triggers.size(); ++i) {
       if (triggers[i] && (this->*triggers[i])()) {
-        this->cur_state = s21::Snake_Game<width, height>::State(i);
+        this->cur_state = s21::Snake_Game::State(i);
         return this;
       }
     }
@@ -57,8 +53,7 @@ GameModel* s21::Snake_Game<width, height>::updateCurrentState(
   return this;
 }
 
-template <size_t width, size_t height>
-void s21::Snake_Game<width, height>::Move_Handler(UserAction_t action) {
+void s21::Snake_Game::Move_Handler(UserAction_t action) {
   switch (action) {
     case Left:
       this->direction = (this->direction + 3) % 4;
@@ -77,22 +72,16 @@ void s21::Snake_Game<width, height>::Move_Handler(UserAction_t action) {
   }
 }
 
-template <size_t width, size_t height>
-void Snake_Game<width, height>::Over_Handler(UserAction_t) {}
+void Snake_Game::Over_Handler(UserAction_t) {}
 
-template <size_t width, size_t height>
-void s21::Snake_Game<width, height>::Eating_Handler(UserAction_t) {
+void s21::Snake_Game::Eating_Handler(UserAction_t) {
   this->ateApple = true;
   this->NewApple();
 }
 
-template <size_t width, size_t height>
-bool s21::Snake_Game<width, height>::FoundApple() {
-  return this->body.front() == this->apple;
-}
+bool s21::Snake_Game::FoundApple() { return this->body.front() == this->apple; }
 
-template <size_t width, size_t height>
-bool s21::Snake_Game<width, height>::Smashed() {
+bool s21::Snake_Game::Smashed() {
   Position headPos = this->body.front();
   bool SmashedIntoSelf = false;
   bool SmashedIntoBorder = (headPos.x < 0 || headPos.x >= WIDTH) ||
@@ -106,15 +95,12 @@ bool s21::Snake_Game<width, height>::Smashed() {
   return SmashedIntoBorder || SmashedIntoSelf;
 }
 
-template <size_t width, size_t height>
-bool s21::Snake_Game<width, height>::isWin() {
-  return body.size() >=
-         static_cast<std::size_t>(s21::Snake_Game<width, height>::HEIGHT) *
-             static_cast<std::size_t>(s21::Snake_Game<width, height>::WIDTH);
+bool s21::Snake_Game::isWin() {
+  return body.size() >= static_cast<std::size_t>(this->HEIGHT) *
+                            static_cast<std::size_t>(this->WIDTH);
 }
 
-template <size_t width, size_t height>
-void s21::Snake_Game<width, height>::Forward() {
+void s21::Snake_Game::Forward() {
   Position headPos = getNextPos();
 
   this->body.push_front(headPos);
@@ -124,34 +110,29 @@ void s21::Snake_Game<width, height>::Forward() {
   this->ateApple = false;
 }
 
-template <size_t width, size_t height>
-Position s21::Snake_Game<width, height>::getNextPos() {
+Position s21::Snake_Game::getNextPos() {
   Position headPos;
   Position prevPos = this->body.front();
   switch (this->direction) {
-    case s21::Snake_Game<width, height>::LEFT:
+    case s21::Snake_Game::LEFT:
       headPos = Position{prevPos.x - 1, prevPos.y};
       break;
-    case s21::Snake_Game<width, height>::RIGHT:
+    case s21::Snake_Game::RIGHT:
       headPos = Position{prevPos.x + 1, prevPos.y};
       break;
-    case s21::Snake_Game<width, height>::UP:
+    case s21::Snake_Game::UP:
       headPos = Position{prevPos.x, prevPos.y - 1};
       break;
-    case s21::Snake_Game<width, height>::DOWN:
+    case s21::Snake_Game::DOWN:
       headPos = Position{prevPos.x, prevPos.y + 1};
       break;
   }
   return headPos;
 }
 
-template <size_t width, size_t height>
-bool s21::Snake_Game<width, height>::isOver() {
-  return isWin() || Smashed();
-}
+bool s21::Snake_Game::isOver() { return isWin() || Smashed(); }
 
-template <size_t width, size_t height>
-void s21::Snake_Game<width, height>::NewApple() {
+void s21::Snake_Game::NewApple() {
   std::list<Position> availableSpots;
   for (int i = 0; i < this->HEIGHT; ++i) {
     for (int x = 0; x < this->WIDTH; ++x) {
@@ -176,22 +157,17 @@ void s21::Snake_Game<width, height>::NewApple() {
   }
 }
 
-template <size_t width, size_t height>
-bool Snake_Game<width, height>::Yes() {
-  return true;
-}
+bool Snake_Game::Yes() { return true; }
 
-template <size_t width, size_t height>
-bool Snake_Game<width, height>::No() {
-  return false;
-}
+bool Snake_Game::No() { return false; }
 
-template <size_t width, size_t height>
-std::list<Position> Snake_Game<width, height>::GetBody() const {
-  return this->body;
-}
+std::list<Position> Snake_Game::GetBody() { return this->body; }
 
-// Explicit instantiation
-template class s21::Snake_Game<10, 20>;
-
-}  // namespace s21
+int Snake_Game::GetDirection() { return this->direction; }
+int Snake_Game::Width() const { return this->width; }
+int Snake_Game::Height() const { return this->height; }
+int Snake_Game::GetDirection() { return this->direction; }
+int Snake_Game::GetScore() const { return this->score; }
+int Snake_Game::GetHighScore() const { return this->highScore; }
+int Snake_Game::GetLevel() const { return this->level; }
+};  // namespace s21

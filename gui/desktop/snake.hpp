@@ -3,22 +3,25 @@
 #include <unistd.h>
 
 #include <cstring>
+#include <functional>
 #include <map>
 
+#include "brick_game/globals.h"
 #include "brick_game/models/render.h"
+#include "brick_game/snake/frontend.hpp"
 
 namespace s21 {
 
-template <size_t height, size_t width, int start_y, int start_x>
 class Snake_Render : public s21::Render {
  private:
+  s21::SnakeFrontendData* model;
   enum State { ST_WAITING, ST_MOVE, ST_PAUSE, ST_WIN, ST_LOSE };
   typedef bool (Snake_Render::*InputHandler)(int);
   typedef void (Snake_Render::*ScreenHandler)();
-  const int HEIGHT = height;
-  const int WIDTH = width;
-  const int START_Y = start_y;
-  const int START_X = start_x;
+  int HEIGHT;
+  int WIDTH;
+  int START_Y;
+  int START_X;
   State cur_state;
   WINDOW* window;
   std::map<State, InputHandler> input_handlers = {
@@ -93,10 +96,9 @@ class Snake_Render : public s21::Render {
   }
 
   void MoveScreen_Handler() {
-    std::list<Position> body = this->model->GetBody();
-    int rowsPerSeg = this->HEIGHT / this->model->HEIGHT;
-    int colsPerSeg = this->WIDTH / this->model->WIDTH;
-    for (const auto& pos : body) {
+    int rowsPerSeg = this->HEIGHT / this->model->Height();
+    int colsPerSeg = this->WIDTH / this->model->Width();
+    for (const auto& pos : this->model->GetBody()) {
       for (int i = 0; i < rowsPerSeg; ++i) {
         for (int j = 0; j < colsPerSeg; ++j) {
           mvwprintw(this->window, pos.y * rowsPerSeg + i,
@@ -113,8 +115,13 @@ class Snake_Render : public s21::Render {
   void LoseScreen_Handler() { mvwprintw(this->window, 2, 2, "LOSE   "); }
 
  public:
-  Snake_Render(s21::GameModel* mdl) {
+  Snake_Render(s21::SnakeFrontendData* mdl, int width = 10, int height = 20,
+               int start_y = 0, int start_x = 0) {
     this->model = mdl;
+    this->WIDTH = width;
+    this->HEIGHT = height;
+    this->START_Y = start_y;
+    this->START_X = start_x;
     this->cur_state = ST_WAITING;
     initscr();
     cbreak();
@@ -167,8 +174,8 @@ class Snake_Render : public s21::Render {
     return action;
   }
 
-  void UpdateState(s21::GameModel* model) override {
-    this->model = model;
+  void UpdateState(s21::Frontend_Interface* model) override {
+    this->model = static_cast<s21::SnakeFrontendData*>(model);
     Draw();
   }
 

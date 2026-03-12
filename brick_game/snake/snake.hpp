@@ -3,18 +3,22 @@
 #include <list>
 
 #include "brick_game/globals.h"
+#include "brick_game/models/frontendInterface.h"
 #include "brick_game/models/gameModel.h"
+#include "brick_game/snake/frontend.hpp"
 
 namespace s21 {
 
-template <size_t width, size_t height>
-class Snake_Game : public GameModel {
+class Snake_Game : public GameModel, public SnakeFrontendData {
  private:
   int lenght;
   std::list<Position> body;
   int direction;
   Position apple;
   bool ateApple;
+  int score = 0;
+  int highScore = 0;
+  int level = 0;
 
   typedef enum {
     ST_MOVE,
@@ -42,17 +46,23 @@ class Snake_Game : public GameModel {
   Position getNextPos();
   bool Yes();
   bool No();
-  std::list<Position> GetBody();
 
  public:
   static const int LEFT = 0;
   static const int UP = 1;
   static const int RIGHT = 2;
   static const int DOWN = 3;
-  int WIDTH = width;
-  int HEIGHT = height;
+  int width = WIDTH;
+  int height = HEIGHT;
 
   Snake_Game();
-  GameModel* updateCurrentState(UserAction_t action) override;
+  Frontend_Interface* updateCurrentState(UserAction_t action) override;
+  std::list<Position> GetBody() override;
+  int Width() const override;
+  int Height() const override;
+  int GetDirection() override;
+  int GetScore() const override;
+  int GetHighScore() const override;
+  int GetLevel() const override;
 };
 }  // namespace s21

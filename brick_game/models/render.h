@@ -7,11 +7,11 @@ namespace s21 {
 
 class Render {
  protected:
-  s21::GameModel* model;
+  s21::Frontend_Interface* model;
 
  public:
   virtual UserAction_t GetAction() = 0;
-  virtual void UpdateState(s21::GameModel* model) = 0;
+  virtual void UpdateState(s21::Frontend_Interface* model) = 0;
 
   virtual ~Render() = default;
 };

@@ -59,6 +59,12 @@
         "typeinfo": "cpp",
         "algorithm": "cpp",
         "atomic": "cpp",
-        "numeric": "cpp"
+        "numeric": "cpp",
+        "cerrno": "cpp",
+        "format": "cpp",
+        "functional": "cpp",
+        "system_error": "cpp",
+        "type_traits": "cpp",
+        "utility": "cpp"
     }
 }

@@ -2,6 +2,7 @@
 #include <iostream>
 
 #include "brick_game/globals.h"
+#include "brick_game/models/frontendInterface.h"
 namespace s21 {
 
 class GameModel {
@@ -11,7 +12,7 @@ class GameModel {
  public:
   int WIDTH;
   int HEIGHT;
-  virtual GameModel* updateCurrentState(UserAction_t) = 0;
+  virtual Frontend_Interface* updateCurrentState(UserAction_t) = 0;
   long GetTimer() { return this->timer; };
   virtual ~GameModel() = default;
 };

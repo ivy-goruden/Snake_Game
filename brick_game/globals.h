@@ -30,6 +30,10 @@ typedef struct Position {
   }
 } Position;
 
+// Snake game defaults
+const int WIDTH = 10;
+const int HEIGHT = 20;
+
 template <typename T>
 T random(T range_from, T range_to) {
   std::random_device rand_dev;

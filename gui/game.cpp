@@ -23,8 +23,7 @@ int main() {
         break;
       case 2:
         auto game = s21::Snake_Game<10, 20>();
-        auto render = s21::Snake_Render<15, 20, 0, 0>(&game);
-        auto c = s21::Controller(&game, &render);
+        auto render = s21::Snake_Render(&game, 20, 30, 0, 0);
         c.Run();
     }
   }
