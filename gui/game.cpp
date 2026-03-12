@@ -22,8 +22,9 @@ int main() {
         printf("bad choice\n");
         break;
       case 2:
-        auto game = s21::Snake_Game<10, 20>();
+        auto game = s21::Snake_Game();
         auto render = s21::Snake_Render(&game, 20, 30, 0, 0);
+        auto c = s21::Controller(&game, &render);
         c.Run();
     }
   }

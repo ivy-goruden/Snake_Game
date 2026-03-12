@@ -1,3 +1,63 @@
+START
+RUNNING draw function
+START
+START
+START
+START
+START
+START
+START
+START
+START
+START
+START
+START
+START
+START
+START
+START
+START
+START
+START
+START
+START
+START
+START
+START
+START
+START
+START
+START
+START
+START
+START
+START
+START
+START
+START
+START
+START
+START
+START
+START
+START
+START
+START
+START
+RUNNING draw function
+START
+START
+START
+START
+START
+START
+START
+START
+START
+START
+START
+ch = 115
+START
 RUNNING draw function
 RUNNING draw function
 RUNNING draw function
@@ -9,53 +69,19 @@ RUNNING draw function
 RUNNING draw function
 RUNNING draw function
 RUNNING draw function
+ch = 258
+RUNNING draw function
+RUNNING draw function
+RUNNING draw function
+RUNNING draw function
+ch = 115
 RUNNING draw function
 RUNNING draw function
 RUNNING draw function
 RUNNING draw function
 RUNNING draw function
 RUNNING draw function
+ch = 115
 RUNNING draw function
-RUNNING draw function
-RUNNING draw function
-RUNNING draw function
-RUNNING draw function
-RUNNING draw function
-RUNNING draw function
-RUNNING draw function
-RUNNING draw function
-RUNNING draw function
-RUNNING draw function
-RUNNING draw function
-RUNNING draw function
-RUNNING draw function
-RUNNING draw function
-RUNNING draw function
-RUNNING draw function
-RUNNING draw function
-RUNNING draw function
-RUNNING draw function
-RUNNING draw function
-RUNNING draw function
-RUNNING draw function
-RUNNING draw function
-RUNNING draw function
-RUNNING draw function
-RUNNING draw function
-RUNNING draw function
-RUNNING draw function
-RUNNING draw function
-RUNNING draw function
-RUNNING draw function
-RUNNING draw function
-RUNNING draw function
-RUNNING draw function
-RUNNING draw function
-RUNNING draw function
-RUNNING draw function
-RUNNING draw function
-RUNNING draw function
-RUNNING draw function
-RUNNING draw function
-RUNNING draw function
+ch = 115
 RUNNING draw function

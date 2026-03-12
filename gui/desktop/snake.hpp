@@ -137,6 +137,9 @@ class Snake_Render : public s21::Render {
   UserAction_t GetAction() override {
     usleep(20000);
     int ch = getch();
+    if (ch != ERR) {
+      write_log("ch = %d", ch);
+    }
     UserAction_t action = No_Action;
 
     InputHandler handle = this->GetInputHandler();
@@ -147,9 +150,6 @@ class Snake_Render : public s21::Render {
 
     if (ch != ERR) {
       switch (ch) {
-        case 's':
-          action = Start;
-          break;
         case 'q':
           action = Terminate;
           break;
@@ -164,9 +164,6 @@ class Snake_Render : public s21::Render {
           break;
         case ' ':
           action = Action;
-          break;
-        case 'p':
-          action = Pause;
           break;
       }
     }

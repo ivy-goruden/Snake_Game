@@ -166,8 +166,7 @@ std::list<Position> Snake_Game::GetBody() { return this->body; }
 int Snake_Game::GetDirection() { return this->direction; }
 int Snake_Game::Width() const { return this->width; }
 int Snake_Game::Height() const { return this->height; }
-int Snake_Game::GetDirection() { return this->direction; }
 int Snake_Game::GetScore() const { return this->score; }
 int Snake_Game::GetHighScore() const { return this->highScore; }
 int Snake_Game::GetLevel() const { return this->level; }
-};  // namespace s21
+}  // namespace s21
