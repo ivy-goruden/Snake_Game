@@ -1,8 +1,8 @@
 #pragma once
 #include <iostream>
 
-#include "brick_game/globals.h"
-#include "brick_game/models/gameModel.h"
+#include "../globals.h"
+#include "gameModel.h"
 namespace s21 {
 
 class Render {

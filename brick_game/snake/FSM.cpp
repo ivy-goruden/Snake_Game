@@ -1,6 +1,6 @@
 #include <algorithm>
 
-#include "brick_game/globals.h"
+#include "../globals.h"
 #include "snake.hpp"
 
 namespace s21 {

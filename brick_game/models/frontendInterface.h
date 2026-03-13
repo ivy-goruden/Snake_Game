@@ -1,7 +1,7 @@
 #pragma once
 #include <list>
 
-#include "brick_game/globals.h"
+#include "../globals.h"
 namespace s21 {
 class Frontend_Interface {
  protected:
@@ -19,6 +19,28 @@ class Frontend_Interface {
   int GetScore() const { return this->score; }
   int GetHighScore() const { return this->highScore; }
   int GetLevel() const { return this->level; }
+  void Save_HIScore() {
+    FILE* file = fopen("score.txt", "w");
+    if (file == NULL) {
+      perror("Error opening file");
+      return;
+    }
+    int score = std::max(this->score, this->highScore);
+    fprintf(file, "%d", score);
+    fclose(file);
+  };
+
+  void Get_HIScore() {
+    FILE* file = fopen("score.txt", "r");
+    if (file != NULL) {
+      if (fscanf(file, "%d", &this->highScore) != 1) {
+        this->highScore = 0;
+      }
+      fclose(file);
+    } else {
+      this->highScore = 0;
+    }
+  }
   virtual ~Frontend_Interface() = default;
 };
 }  // namespace s21

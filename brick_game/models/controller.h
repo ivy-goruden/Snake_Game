@@ -1,9 +1,9 @@
 #pragma once
 #include <sys/time.h>
 
-#include "brick_game/globals.h"
-#include "brick_game/models/gameModel.h"
-#include "brick_game/models/render.h"
+#include "../globals.h"
+#include "gameModel.h"
+#include "render.h"
 namespace s21 {
 
 class Controller {

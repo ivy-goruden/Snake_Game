@@ -1,7 +1,7 @@
 #pragma once
 
-#include "brick_game/globals.h"
-#include "brick_game/models/frontendInterface.h"
+#include "../globals.h"
+#include "../models/frontendInterface.h"
 
 namespace s21 {
 class SnakeFrontendData : public Frontend_Interface {

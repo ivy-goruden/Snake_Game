@@ -10,6 +10,7 @@
 #include <stdlib.h>
 #include <sys/time.h>
 
+#include "../globals.h"
 #include "s21_matrix.h"
 typedef struct figure {
   int x;

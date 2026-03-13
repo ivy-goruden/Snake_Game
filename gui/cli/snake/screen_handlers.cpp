@@ -1,5 +1,5 @@
-#include "brick_game/globals.h"
-#include "gui/desktop/snake.hpp"
+#include "../../../brick_game/globals.h"
+#include "snake.hpp"
 
 namespace s21 {
 void Snake_Render::WaitingScreen_Handler() {

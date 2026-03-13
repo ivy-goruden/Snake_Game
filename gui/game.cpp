@@ -5,10 +5,10 @@
 #include <cstddef>
 #include <cstdio>
 
-#include "brick_game/globals.h"
-#include "brick_game/models/controller.h"
-#include "brick_game/snake/snake.hpp"
-#include "gui/desktop/snake.hpp"
+#include "../brick_game/globals.h"
+#include "../brick_game/models/controller.h"
+#include "../brick_game/snake/snake.hpp"
+#include "cli/snake/snake.hpp"
 int main() {
   init_log();
   int game;

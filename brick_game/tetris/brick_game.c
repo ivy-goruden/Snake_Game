@@ -1,7 +1,7 @@
-#include "tetris.h"
+#include "brick_game.h"
 
-int BOARD_HEIGHT = 20;
-int BOARD_WIDTH = 10;
+#include "../globals.h"
+
 static GameInfo_t* currentGame;
 static void get_score(int rows);
 static void game_loop(UserAction_t action);
@@ -369,8 +369,7 @@ GameInfo_t* bg_init() {
   ctx->screen->columns = 0;
 
   // Создаем игровое поле (фиксированные блоки)
-  if (s21_create_matrix(BOARD_HEIGHT, BOARD_WIDTH, ctx->fixed_figure) !=
-      SUCCESS) {
+  if (s21_create_matrix(HEIGHT, WIDTH, ctx->fixed_figure) != SUCCESS) {
     free(ctx->fixed_figure);
     free(ctx->screen);
     free(ctx);
@@ -378,7 +377,7 @@ GameInfo_t* bg_init() {
   }
 
   // Создаем экран для отрисовки
-  if (s21_create_matrix(BOARD_HEIGHT, BOARD_WIDTH, ctx->screen) != SUCCESS) {
+  if (s21_create_matrix(HEIGHT, WIDTH, ctx->screen) != SUCCESS) {
     s21_remove_matrix(ctx->fixed_figure);
     free(ctx->fixed_figure);
     free(ctx->screen);

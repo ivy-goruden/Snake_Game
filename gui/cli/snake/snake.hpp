@@ -5,9 +5,9 @@
 #include <cstring>
 #include <map>
 
-#include "brick_game/globals.h"
-#include "brick_game/models/render.h"
-#include "brick_game/snake/frontend.hpp"
+#include "../../../brick_game/globals.h"
+#include "../../../brick_game/models/render.h"
+#include "../../../brick_game/snake/frontend.hpp"
 
 namespace s21 {
 

@@ -1,10 +1,10 @@
 #pragma once
 #include <array>
 
-#include "brick_game/globals.h"
-#include "brick_game/models/frontendInterface.h"
-#include "brick_game/models/gameModel.h"
-#include "brick_game/snake/frontend.hpp"
+#include "../globals.h"
+#include "../models/frontendInterface.h"
+#include "../models/gameModel.h"
+#include "frontend.hpp"
 
 namespace s21 {
 
@@ -15,6 +15,8 @@ class Snake_Game : public GameModel, public SnakeFrontendData {
   Direction direction;
   Position apple;
   bool ateApple;
+  int width = 10;
+  int height = 20;
 
   typedef enum {
     ST_MOVE,
@@ -41,8 +43,6 @@ class Snake_Game : public GameModel, public SnakeFrontendData {
   void Forward();
   void NewApple();
   Position getNextPos();
-  bool Yes();
-  bool No();
 
  public:
   int START_SEG = 4;
@@ -54,8 +54,6 @@ class Snake_Game : public GameModel, public SnakeFrontendData {
   Position GetApple() const override;
   bool IsWin() override;
   bool IsLose() override;
-  void Save_HIScore() override;
-  void Get_HIScore() override;
   void InitFSM() override;
   void reset() override;
 };

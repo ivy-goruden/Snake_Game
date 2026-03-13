@@ -1,6 +1,6 @@
 #include "snake.hpp"
 
-#include "brick_game/globals.h"
+#include "../globals.h"
 
 namespace s21 {
 
@@ -103,33 +103,6 @@ void s21::Snake_Game::NewApple() {
   }
 }
 
-bool Snake_Game::Yes() { return true; }
-
-bool Snake_Game::No() { return false; }
-
-void Snake_Game::Save_HIScore() {
-  FILE* file = fopen("brick_game/snake/score.txt", "w");
-  if (file == NULL) {
-    perror("Error opening file");
-    return;
-  }
-  int score = std::max(this->score, this->highScore);
-  fprintf(file, "%d", score);
-  fclose(file);
-}
-
-void Snake_Game::Get_HIScore() {
-  FILE* file = fopen("brick_game/snake/score.txt", "r");
-  if (file != NULL) {
-    if (fscanf(file, "%d", &this->highScore) != 1) {
-      this->highScore = 0;
-    }
-    fclose(file);
-  } else {
-    this->highScore = 0;
-  }
-}
-
 void Snake_Game::InitFSM() {
   // Initialize FSM Triggers
   for (int i = 0; i < SIZE; ++i) {
@@ -165,4 +138,5 @@ void Snake_Game::reset() {
   InitBody();
   NewApple();
 }
+
 }  // namespace s21

@@ -1,7 +1,7 @@
 #include <type_traits>
 
-#include "brick_game/globals.h"
-#include "gui/desktop/snake.hpp"
+#include "../../../brick_game/globals.h"
+#include "snake.hpp"
 namespace s21 {
 
 bool Snake_Render::Waiting_Handler(int key) {
