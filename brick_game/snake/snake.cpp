@@ -5,37 +5,26 @@
 namespace s21 {
 
 Snake_Game::Snake_Game() {
-  this->lenght = 4;
+  this->lenght = START_SEG;
   this->direction = RIGHT;
   this->cur_state = ST_MOVE;
   this->ateApple = false;
   this->timer = 1000000;
-
-  // Initialize body
-  for (int i = 0; i < this->lenght; ++i) {
-    this->body.push_back({HEIGHT / 2, WIDTH / 2 - i});
+  this->width = WIDTH;
+  this->height = HEIGHT;
+  InitBody();
+  Get_HIScore();
+  InitFSM();
+  NewApple();
+}
+// инициализация тела перед началом игры
+void s21::Snake_Game::InitBody() {
+  int center_y = Height() / 2 - 1;
+  int center_x = Width() / 2 - 1;
+  for (int i = 0; i < START_SEG; i++) {
+    Position newSeg = Position{center_x, center_y + i};
+    this->body.push_back(newSeg);
   }
-
-  // Initialize FSM Triggers
-  for (int i = 0; i < SIZE; ++i) {
-    for (int j = 0; j < SIZE; ++j) {
-      this->FSM_Triggers[i][j] = &Snake_Game::No;
-    }
-  }
-
-  this->FSM_Triggers[ST_MOVE][ST_OVER] = &Snake_Game::isOver;
-  this->FSM_Triggers[ST_MOVE][ST_EATING] = &Snake_Game::FoundApple;
-
-  this->FSM_Triggers[ST_OVER][ST_OVER] = &Snake_Game::Yes;
-
-  this->FSM_Triggers[ST_EATING][ST_MOVE] = &Snake_Game::Yes;
-
-  // Initialize FSM Handlers
-  this->FSM_Handlers[ST_MOVE] = &Snake_Game::Move_Handler;
-  this->FSM_Handlers[ST_OVER] = &Snake_Game::Over_Handler;
-  this->FSM_Handlers[ST_EATING] = &Snake_Game::Eating_Handler;
-
-  this->NewApple();
 }
 
 Frontend_Interface* s21::Snake_Game::updateCurrentState(UserAction_t action) {
@@ -53,51 +42,9 @@ Frontend_Interface* s21::Snake_Game::updateCurrentState(UserAction_t action) {
   return this;
 }
 
-void s21::Snake_Game::Move_Handler(UserAction_t action) {
-  switch (action) {
-    case Left:
-      this->direction = (this->direction + 3) % 4;
-      break;
-    case Right:
-      this->direction = (this->direction + 1) % 4;
-      break;
-    case Action:
-      this->Forward();
-      break;
-    case Tick:
-      this->Forward();
-      break;
-    default:
-      break;
-  }
-}
-
-void Snake_Game::Over_Handler(UserAction_t) {}
-
-void s21::Snake_Game::Eating_Handler(UserAction_t) {
-  this->ateApple = true;
-  this->NewApple();
-}
-
-bool s21::Snake_Game::FoundApple() { return this->body.front() == this->apple; }
-
-bool s21::Snake_Game::Smashed() {
-  Position headPos = this->body.front();
-  bool SmashedIntoSelf = false;
-  bool SmashedIntoBorder = (headPos.x < 0 || headPos.x >= WIDTH) ||
-                           (headPos.y < 0 || headPos.y >= HEIGHT);
-  for (auto it = std::next(body.begin()); it != body.end(); ++it) {
-    if (*it == headPos) {
-      SmashedIntoSelf = true;
-      break;
-    }
-  }
-  return SmashedIntoBorder || SmashedIntoSelf;
-}
-
 bool s21::Snake_Game::isWin() {
-  return body.size() >= static_cast<std::size_t>(this->HEIGHT) *
-                            static_cast<std::size_t>(this->WIDTH);
+  return body.size() >= static_cast<std::size_t>(this->height) *
+                            static_cast<std::size_t>(this->width);
 }
 
 void s21::Snake_Game::Forward() {
@@ -113,29 +60,28 @@ void s21::Snake_Game::Forward() {
 Position s21::Snake_Game::getNextPos() {
   Position headPos;
   Position prevPos = this->body.front();
-  switch (this->direction) {
-    case s21::Snake_Game::LEFT:
+  Direction dir = this->direction;
+  switch (dir) {
+    case LEFT:
       headPos = Position{prevPos.x - 1, prevPos.y};
       break;
-    case s21::Snake_Game::RIGHT:
+    case RIGHT:
       headPos = Position{prevPos.x + 1, prevPos.y};
       break;
-    case s21::Snake_Game::UP:
+    case UP:
       headPos = Position{prevPos.x, prevPos.y - 1};
       break;
-    case s21::Snake_Game::DOWN:
+    case DOWN:
       headPos = Position{prevPos.x, prevPos.y + 1};
       break;
   }
   return headPos;
 }
 
-bool s21::Snake_Game::isOver() { return isWin() || Smashed(); }
-
 void s21::Snake_Game::NewApple() {
   std::list<Position> availableSpots;
-  for (int i = 0; i < this->HEIGHT; ++i) {
-    for (int x = 0; x < this->WIDTH; ++x) {
+  for (int i = 0; i < this->width; ++i) {
+    for (int x = 0; x < this->height; ++x) {
       Position cur = Position{i, x};
       bool available = true;
       for (const auto& pos : this->body) {
@@ -161,12 +107,62 @@ bool Snake_Game::Yes() { return true; }
 
 bool Snake_Game::No() { return false; }
 
-std::list<Position> Snake_Game::GetBody() { return this->body; }
+void Snake_Game::Save_HIScore() {
+  FILE* file = fopen("brick_game/snake/score.txt", "w");
+  if (file == NULL) {
+    perror("Error opening file");
+    return;
+  }
+  int score = std::max(this->score, this->highScore);
+  fprintf(file, "%d", score);
+  fclose(file);
+}
 
-int Snake_Game::GetDirection() { return this->direction; }
-int Snake_Game::Width() const { return this->width; }
-int Snake_Game::Height() const { return this->height; }
-int Snake_Game::GetScore() const { return this->score; }
-int Snake_Game::GetHighScore() const { return this->highScore; }
-int Snake_Game::GetLevel() const { return this->level; }
+void Snake_Game::Get_HIScore() {
+  FILE* file = fopen("brick_game/snake/score.txt", "r");
+  if (file != NULL) {
+    if (fscanf(file, "%d", &this->highScore) != 1) {
+      this->highScore = 0;
+    }
+    fclose(file);
+  } else {
+    this->highScore = 0;
+  }
+}
+
+void Snake_Game::InitFSM() {
+  // Initialize FSM Triggers
+  for (int i = 0; i < SIZE; ++i) {
+    for (int j = 0; j < SIZE; ++j) {
+      this->FSM_Triggers[i][j] = &Snake_Game::No;
+    }
+  }
+  this->FSM_Triggers[ST_MOVE][ST_OVER] = &Snake_Game::isOver;
+  this->FSM_Triggers[ST_MOVE][ST_EATING] = &Snake_Game::FoundApple;
+  this->FSM_Triggers[ST_EATING][ST_MOVE] = &Snake_Game::Yes;
+
+  // Initialize FSM Handlers
+  this->FSM_Handlers[ST_MOVE] = &Snake_Game::Move_Handler;
+  this->FSM_Handlers[ST_OVER] = &Snake_Game::Over_Handler;
+  this->FSM_Handlers[ST_EATING] = &Snake_Game::Eating_Handler;
+}
+
+std::list<Position> Snake_Game::GetBody() { return this->body; }
+Direction Snake_Game::GetDirection() { return this->direction; }
+Position Snake_Game::GetApple() const { return this->apple; }
+bool Snake_Game::IsWin() { return this->isWin(); }
+bool Snake_Game::IsLose() { return this->isOver(); }
+void Snake_Game::reset() {
+  this->lenght = START_SEG;
+  this->direction = RIGHT;
+  this->cur_state = ST_MOVE;
+  this->ateApple = false;
+  this->timer = 1000000;
+  this->score = 0;
+  this->level = 0;
+  this->body.clear();
+  Get_HIScore();
+  InitBody();
+  NewApple();
+}
 }  // namespace s21

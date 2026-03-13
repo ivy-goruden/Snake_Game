@@ -15,8 +15,10 @@ typedef enum {
   Down,
   Action,
   Tick,
+  Enter,
 } UserAction_t;
 
+typedef enum { LEFT, UP, RIGHT, DOWN } Direction;
 typedef struct Position {
   int x;
   int y;

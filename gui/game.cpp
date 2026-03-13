@@ -5,6 +5,7 @@
 #include <cstddef>
 #include <cstdio>
 
+#include "brick_game/globals.h"
 #include "brick_game/models/controller.h"
 #include "brick_game/snake/snake.hpp"
 #include "gui/desktop/snake.hpp"
@@ -23,7 +24,7 @@ int main() {
         break;
       case 2:
         auto game = s21::Snake_Game();
-        auto render = s21::Snake_Render(&game, 20, 30, 0, 0);
+        auto render = s21::Snake_Render(&game, 20, 20, 0, 0);
         auto c = s21::Controller(&game, &render);
         c.Run();
     }

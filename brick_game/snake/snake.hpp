@@ -1,6 +1,5 @@
 #pragma once
 #include <array>
-#include <list>
 
 #include "brick_game/globals.h"
 #include "brick_game/models/frontendInterface.h"
@@ -13,12 +12,9 @@ class Snake_Game : public GameModel, public SnakeFrontendData {
  private:
   int lenght;
   std::list<Position> body;
-  int direction;
+  Direction direction;
   Position apple;
   bool ateApple;
-  int score = 0;
-  int highScore = 0;
-  int level = 0;
 
   typedef enum {
     ST_MOVE,
@@ -34,6 +30,7 @@ class Snake_Game : public GameModel, public SnakeFrontendData {
   std::array<Handler, SIZE> FSM_Handlers;
   State cur_state;
 
+  void InitBody();
   void Move_Handler(UserAction_t);
   void Over_Handler(UserAction_t);
   void Eating_Handler(UserAction_t);
@@ -48,21 +45,18 @@ class Snake_Game : public GameModel, public SnakeFrontendData {
   bool No();
 
  public:
-  static const int LEFT = 0;
-  static const int UP = 1;
-  static const int RIGHT = 2;
-  static const int DOWN = 3;
-  int width = WIDTH;
-  int height = HEIGHT;
+  int START_SEG = 4;
 
   Snake_Game();
   Frontend_Interface* updateCurrentState(UserAction_t action) override;
   std::list<Position> GetBody() override;
-  int Width() const override;
-  int Height() const override;
-  int GetDirection() override;
-  int GetScore() const override;
-  int GetHighScore() const override;
-  int GetLevel() const override;
+  Direction GetDirection() override;
+  Position GetApple() const override;
+  bool IsWin() override;
+  bool IsLose() override;
+  void Save_HIScore() override;
+  void Get_HIScore() override;
+  void InitFSM() override;
+  void reset() override;
 };
 }  // namespace s21

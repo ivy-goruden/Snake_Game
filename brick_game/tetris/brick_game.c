@@ -625,13 +625,3 @@ void bg_free_test() {
   free(ctx);
   currentGame = NULL;
 }
-// static const char* game_state_to_string(GAME_STATE_t state) {
-//   static const char* strings[] = {"ST_WAITING", "ST_SPAWN", "ST_WIN",
-//                                   "ST_OVER",    "ST_PAUSE", "ST_FALLING",
-//                                   "ST_LOCK",    "ST_CLEAR"};
-
-//   if (state >= ST_WAITING && state <= ST_CLEAR) {
-//     return strings[state];
-//   }
-//   return "UNKNOWN_STATE";
-// }
