@@ -56,5 +56,7 @@ class Snake_Game : public GameModel, public SnakeFrontendData {
   bool IsLose() override;
   void InitFSM() override;
   void reset() override;
+  void Save_HIScore() override;
+  void Get_HIScore() override;
 };
 }  // namespace s21

@@ -46,12 +46,13 @@ void Snake_Game::Over_Handler(UserAction_t action) {
   }
 }
 
-void s21::Snake_Game::Eating_Handler(UserAction_t) {
+void s21::Snake_Game::Eating_Handler(UserAction_t action) {
   this->score += 1;
   this->level = std::min(int(this->score / 5.0), 10);
   this->timer *= 1 - 0.1 * this->level;
   this->ateApple = true;
   this->NewApple();
+  this->Move_Handler(action);
 }
 
 bool s21::Snake_Game::FoundApple() { return this->body.front() == this->apple; }

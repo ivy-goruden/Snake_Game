@@ -1,4 +1,3 @@
-#pragma once
 #include <ncurses.h>
 #include <unistd.h>
 
@@ -7,16 +6,16 @@
 
 #include "../../../brick_game/globals.h"
 #include "../../../brick_game/models/render.h"
-#include "../../../brick_game/snake/frontend.hpp"
+#include "../../../brick_game/tetris/frontend.hpp"
 
 namespace s21 {
 
-class Snake_Render : public s21::Render {
+class Tetris_Render : public s21::Render {
  private:
-  s21::SnakeFrontendData* model;
+  s21::TetrisFrontendData* model;
   enum State { ST_WAITING, ST_MOVE, ST_PAUSE, ST_WIN, ST_LOSE };
-  typedef bool (Snake_Render::*InputHandler)(int);
-  typedef void (Snake_Render::*ScreenHandler)();
+  typedef bool (Tetris_Render::*InputHandler)(int);
+  typedef void (Tetris_Render::*ScreenHandler)();
   int height;
   int width;
   int start_y;
@@ -25,17 +24,17 @@ class Snake_Render : public s21::Render {
   WINDOW* window;
   WINDOW* stats_window;
   std::map<State, InputHandler> input_handlers = {
-      {ST_WAITING, &Snake_Render::Waiting_Handler},
-      {ST_MOVE, &Snake_Render::Move_Handler},
-      {ST_PAUSE, &Snake_Render::Pause_Handler},
-      {ST_WIN, &Snake_Render::Win_Handler},
-      {ST_LOSE, &Snake_Render::Lose_Handler}};
+      {ST_WAITING, &Tetris_Render::Waiting_Handler},
+      {ST_MOVE, &Tetris_Render::Move_Handler},
+      {ST_PAUSE, &Tetris_Render::Pause_Handler},
+      {ST_WIN, &Tetris_Render::Win_Handler},
+      {ST_LOSE, &Tetris_Render::Lose_Handler}};
   std::map<State, ScreenHandler> screen_handlers = {
-      {ST_WAITING, &Snake_Render::WaitingScreen_Handler},
-      {ST_MOVE, &Snake_Render::MoveScreen_Handler},
-      {ST_PAUSE, &Snake_Render::PauseScreen_Handler},
-      {ST_WIN, &Snake_Render::WinScreen_Handler},
-      {ST_LOSE, &Snake_Render::LoseScreen_Handler}};
+      {ST_WAITING, &Tetris_Render::WaitingScreen_Handler},
+      {ST_MOVE, &Tetris_Render::MoveScreen_Handler},
+      {ST_PAUSE, &Tetris_Render::PauseScreen_Handler},
+      {ST_WIN, &Tetris_Render::WinScreen_Handler},
+      {ST_LOSE, &Tetris_Render::LoseScreen_Handler}};
 
   bool Waiting_Handler(int);
   bool Move_Handler(int);
@@ -50,9 +49,8 @@ class Snake_Render : public s21::Render {
   void LoseScreen_Handler();
 
  public:
-  Snake_Render(s21::SnakeFrontendData* mdl, int width = 10, int height = 20,
-               int start_y = 0, int start_x = 0) {
-    write_log("Snake_Render Constructor Start");
+  Tetris_Render(s21::TetrisFrontendData* mdl, int width = 10, int height = 20,
+                int start_y = 0, int start_x = 0) {
     this->model = mdl;
     this->width = width;
     this->height = height;
@@ -65,10 +63,8 @@ class Snake_Render : public s21::Render {
     nodelay(stdscr, TRUE);
     this->window =
         newwin(this->height + 2, this->width + 2, this->start_y, this->start_x);
-    write_log("Snake_Render Window Created");
     this->stats_window = newwin(this->height + 2, 20, this->start_y,
                                 this->start_x + this->width + 3);
-    write_log("Snake_Render Stats Window Created");
     keypad(this->window, TRUE);
     keypad(this->stats_window, TRUE);
     keypad(stdscr, TRUE);
@@ -79,11 +75,6 @@ class Snake_Render : public s21::Render {
   UserAction_t GetAction() override {
     usleep(20000);
     int ch = getch();
-    if (ch != ERR) {
-      write_log("ch = %d", ch);
-      write_log("%d", this->cur_state);
-      write_log("direction: %d", this->model->GetDirection());
-    }
     UserAction_t action = No_Action;
 
     InputHandler handle = this->GetInputHandler();
@@ -91,7 +82,6 @@ class Snake_Render : public s21::Render {
       Draw();  // перерисовываем экран после обработки ввода
       return action;
     }  // если клавиша перехвачена интерфесом - игнорируем
-
     if (ch != ERR) {
       switch (ch) {
         case 'q':
@@ -114,9 +104,11 @@ class Snake_Render : public s21::Render {
           break;
         case KEY_ENTER:
           action = Enter;
+          write_log("Enter is sent from gui");
           break;
         case '\n':
           action = Enter;
+          write_log("Enter is sent from gui");
           break;
       }
     }
@@ -125,7 +117,7 @@ class Snake_Render : public s21::Render {
   }
 
   void UpdateState(s21::Frontend_Interface* model) override {
-    this->model = static_cast<s21::SnakeFrontendData*>(model);
+    this->model = static_cast<s21::TetrisFrontendData*>(model);
     if (this->model->IsWin()) {
       ChangeState(ST_WIN);
     }
@@ -153,16 +145,27 @@ class Snake_Render : public s21::Render {
     mvwprintw(this->stats_window, 3, 2, "High Score: %d",
               this->model->GetHighScore());
     mvwprintw(this->stats_window, 5, 2, "Level: %d", this->model->GetLevel());
+    matrix_t nextF = this->model->GetNextFigure();
+    int indexY = 0;
+    for (auto row : nextF) {
+      int indexX = 0;
+      for (auto val : row) {
+        if (val == 1) {
+          mvwprintw(this->stats_window, 7 + indexY, 2 + indexX, "#", val);
+        }
+        indexX++;
+      }
+      indexY++;
+    }
     wrefresh(this->stats_window);
   }
 
   void ChangeState(State state) { this->cur_state = state; }
 
-  ~Snake_Render() override {
+  ~Tetris_Render() override {
     delwin(this->window);
     delwin(this->stats_window);
     endwin();
   }
 };
-
 }  // namespace s21

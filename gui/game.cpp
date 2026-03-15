@@ -1,33 +1,63 @@
-
+#include <signal.h>
 #include <stdio.h>
 #include <stdlib.h>
 
 #include <cstddef>
 #include <cstdio>
+#include <cstdlib>
+#include <memory>
 
 #include "../brick_game/globals.h"
 #include "../brick_game/models/controller.h"
 #include "../brick_game/snake/snake.hpp"
+#include "../brick_game/tetris/tetris.hpp"
 #include "cli/snake/snake.hpp"
+#include "cli/tetris/tetris.hpp"
+
+std::unique_ptr<s21::Controller> c;
+
+void TerminateHandler() {
+  c->TerminateHandler();
+  std::abort();
+}
+
+void SignalHandler(int signum) {
+  if (signum == SIGINT) {
+    c->TerminateHandler();
+    std::exit(signum);  // exit вызовет деструкторы глобальных объектов
+  }
+}
+
 int main() {
   init_log();
-  int game;
-  // s21::Controller c = s21::Controller(nullptr, nullptr);
+  std::set_terminate(TerminateHandler);
+  signal(SIGINT, SignalHandler);
+  int choice;
   while (true) {
     printf("Choose game:\n");
     printf("    1.Tetris\n");
     printf("    2.Snake\n");
-    scanf("%d", &game);
-    switch (game) {
-      case 1:
-        printf("bad choice\n");
+    if (scanf("%d", &choice) != 1) break;
+    std::unique_ptr<s21::GameModel> game;  // Умный указатель на базовый класс
+    std::unique_ptr<s21::Render> render;   // Умный указатель на базовый класс
+    switch (choice) {
+      case 1: {
+        game = std::make_unique<s21::Tetris_Game>();
+        render = std::make_unique<s21::Tetris_Render>(
+            static_cast<s21::Tetris_Game*>(game.get()));
         break;
-      case 2:
-        auto game = s21::Snake_Game();
-        auto render = s21::Snake_Render(&game, 20, 20, 0, 0);
-        auto c = s21::Controller(&game, &render);
-        c.Run();
+      }
+      case 2: {
+        game = std::make_unique<s21::Snake_Game>();
+        render = std::make_unique<s21::Snake_Render>(
+            static_cast<s21::Snake_Game*>(game.get()));
+        break;
+      }
+      default:
+        return 0;
     }
+    c = std::make_unique<s21::Controller>(game.get(), render.get());
+    c->Run();
   }
   return 0;
 }

@@ -5,6 +5,7 @@
 namespace s21 {
 
 Snake_Game::Snake_Game() {
+  write_log("Snake_Game Constructor Start");
   this->lenght = START_SEG;
   this->direction = RIGHT;
   this->cur_state = ST_MOVE;
@@ -13,14 +14,19 @@ Snake_Game::Snake_Game() {
   this->width = WIDTH;
   this->height = HEIGHT;
   InitBody();
+  write_log("InitBody Done");
   Get_HIScore();
+  write_log("Get_HIScore Done");
   InitFSM();
+  write_log("InitFSM Done");
   NewApple();
+  write_log("NewApple Done");
 }
 // инициализация тела перед началом игры
 void s21::Snake_Game::InitBody() {
-  int center_y = Height() / 2 - 1;
-  int center_x = Width() / 2 - 1;
+  write_log("InitBody Start");
+  int center_y = HEIGHT / 2 - 1;
+  int center_x = WIDTH / 2 - 1;
   for (int i = 0; i < START_SEG; i++) {
     Position newSeg = Position{center_x, center_y + i};
     this->body.push_back(newSeg);
@@ -137,6 +143,29 @@ void Snake_Game::reset() {
   Get_HIScore();
   InitBody();
   NewApple();
+}
+
+void s21::Snake_Game::Save_HIScore() {
+  FILE* file = fopen("brick_game/snake/score.txt", "w");
+  if (file == NULL) {
+    perror("Error opening file");
+    return;
+  }
+  int score = std::max(this->score, this->highScore);
+  fprintf(file, "%d", score);
+  fclose(file);
+}
+
+void s21::Snake_Game::Get_HIScore() {
+  FILE* file = fopen("brick_game/snake/score.txt", "r");
+  if (file != NULL) {
+    if (fscanf(file, "%d", &this->highScore) != 1) {
+      this->highScore = 0;
+    }
+    fclose(file);
+  } else {
+    this->highScore = 0;
+  }
 }
 
 }  // namespace s21

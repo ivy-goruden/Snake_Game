@@ -1,9 +1,11 @@
 TEST_SRCS := $(wildcard tests/*.c)
-FLAGS := -Werror -Wextra -Wall -D_DEFAULT_SOURCE -I ./
+FLAGS := -Werror -Wextra -Wall -I ./
 BUILD = ../build/
 
-SNAKE_GUI := $(wildcard gui/desktop/*.cpp)
+SNAKE_GUI := $(wildcard gui/cli/snake/*.cpp)
 SNAKE_GAME := $(wildcard brick_game/snake/*.cpp)
+TETRIS_GUI := $(wildcard gui/cli/tetris/*.cpp)
+TETRIS_GAME := $(wildcard brick_game/tetris/*.cpp)
 MAIN_GAME := gui/game.cpp
 GLOBALS := $(wildcard brick_game/*.cpp)
 all:
@@ -61,5 +63,5 @@ clean:
 	rm -f *.o *.a  *.out game
 
 snake:
-	g++ $(FLAGS) $(SNAKE_GUI) $(SNAKE_GAME) $(MAIN_GAME) $(GLOBALS) -o game -lncurses
+	g++ $(FLAGS) $(SNAKE_GUI) $(SNAKE_GAME) $(TETRIS_GUI) $(TETRIS_GAME) $(MAIN_GAME) $(GLOBALS) -o game -lncurses
 	./game

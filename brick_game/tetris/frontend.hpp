@@ -1,21 +1,20 @@
 #pragma once
 
 #include "../models/frontendInterface.h"
-#include "brick_game.h"
 
 namespace s21 {
 
 typedef std::vector<std::vector<int>> matrix_t;
 
-typedef struct figure_t {
+struct figure_t {
   int x;
   int y;
   matrix_t figure;
   int rotation;
-} figure_t;
+};
 
 class TetrisFrontendData : public Frontend_Interface {
- private:
+ protected:
   figure_t nextFigure;
 
  public:

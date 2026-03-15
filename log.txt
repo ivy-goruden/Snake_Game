@@ -1,3 +1,12 @@
+Snake_Game Constructor Start
+InitBody Start
+InitBody Done
+Get_HIScore Done
+InitFSM Done
+NewApple Done
+Snake_Render Constructor Start
+Snake_Render Window Created
+Snake_Render Stats Window Created
 CHANGING DIRECTION
 TICK has happened
 CHANGING DIRECTION
@@ -5,591 +14,347 @@ TICK has happened
 ch = 115
 0
 direction: 2
-Apple at: 9 11
+Apple at: 1 18
 CHANGING DIRECTION
 TICK has happened
-Apple at: 9 11
-CHANGING DIRECTION
-TICK has happened
-Apple at: 9 11
-CHANGING DIRECTION
-TICK has happened
-Apple at: 9 11
-ch = 258
-1
-direction: 2
-CHANGING DIRECTION
-Apple at: 9 11
-CHANGING DIRECTION
-TICK has happened
-Apple at: 9 11
-ch = 32
-1
-direction: 3
-CHANGING DIRECTION
-ACTION is pressed
-Apple at: 9 11
-ch = 32
-1
-direction: 3
-Apple at: 6 9
-CHANGING DIRECTION
-TICK has happened
-Apple at: 6 9
-ch = 260
-1
-direction: 3
-CHANGING DIRECTION
-Apple at: 6 9
-CHANGING DIRECTION
-TICK has happened
-Apple at: 6 9
-ch = 32
-1
-direction: 0
-CHANGING DIRECTION
-ACTION is pressed
-Apple at: 6 9
-ch = 32
-1
-direction: 0
-CHANGING DIRECTION
-ACTION is pressed
-Apple at: 6 9
-CHANGING DIRECTION
-TICK has happened
-Apple at: 6 9
-ch = 259
-1
-direction: 0
-CHANGING DIRECTION
-Apple at: 6 9
-ch = 32
-1
-direction: 1
-CHANGING DIRECTION
-ACTION is pressed
-Apple at: 6 9
-CHANGING DIRECTION
-TICK has happened
-Apple at: 6 9
-ch = 32
-1
-direction: 1
-CHANGING DIRECTION
-ACTION is pressed
-Apple at: 6 9
-ch = 261
-1
-direction: 1
-CHANGING DIRECTION
-Apple at: 6 9
-CHANGING DIRECTION
-TICK has happened
-Apple at: 6 9
-ch = 32
-1
-direction: 2
-Apple at: 5 19
-ch = 258
-1
-direction: 2
-CHANGING DIRECTION
-Apple at: 5 19
-CHANGING DIRECTION
-TICK has happened
-Apple at: 5 19
-ch = 32
-1
-direction: 3
-CHANGING DIRECTION
-ACTION is pressed
-Apple at: 5 19
-ch = 32
-1
-direction: 3
-CHANGING DIRECTION
-ACTION is pressed
-Apple at: 5 19
-ch = 32
-1
-direction: 3
-CHANGING DIRECTION
-ACTION is pressed
-Apple at: 5 19
-CHANGING DIRECTION
-TICK has happened
-Apple at: 5 19
-ch = 32
-1
-direction: 3
-CHANGING DIRECTION
-ACTION is pressed
-Apple at: 5 19
-ch = 32
-1
-direction: 3
-CHANGING DIRECTION
-ACTION is pressed
-Apple at: 5 19
-ch = 32
-1
-direction: 3
-CHANGING DIRECTION
-ACTION is pressed
-Apple at: 5 19
-ch = 32
-1
-direction: 3
-CHANGING DIRECTION
-ACTION is pressed
-Apple at: 5 19
-CHANGING DIRECTION
-TICK has happened
-Apple at: 5 19
-ch = 260
-1
-direction: 3
-CHANGING DIRECTION
-Apple at: 5 19
-ch = 32
-1
-direction: 0
-CHANGING DIRECTION
-ACTION is pressed
-Apple at: 5 19
-Apple at: 7 19
-ch = 32
-1
-direction: 0
-CHANGING DIRECTION
-ACTION is pressed
-Apple at: 7 19
-CHANGING DIRECTION
-TICK has happened
-Apple at: 7 19
-ch = 259
-1
-direction: 0
-CHANGING DIRECTION
-Apple at: 7 19
-ch = 32
-1
-direction: 1
-CHANGING DIRECTION
-ACTION is pressed
-Apple at: 7 19
-ch = 32
-1
-direction: 1
-CHANGING DIRECTION
-ACTION is pressed
-Apple at: 7 19
-ch = 32
-1
-direction: 1
-CHANGING DIRECTION
-ACTION is pressed
-Apple at: 7 19
-CHANGING DIRECTION
-TICK has happened
-Apple at: 7 19
-ch = 32
-1
-direction: 1
-CHANGING DIRECTION
-ACTION is pressed
-Apple at: 7 19
-ch = 261
-1
-direction: 1
-CHANGING DIRECTION
-Apple at: 7 19
-CHANGING DIRECTION
-TICK has happened
-Apple at: 7 19
-ch = 258
-1
-direction: 2
-CHANGING DIRECTION
-Apple at: 7 19
-ch = 32
-1
-direction: 3
-CHANGING DIRECTION
-ACTION is pressed
-Apple at: 7 19
-CHANGING DIRECTION
-TICK has happened
-Apple at: 7 19
-CHANGING DIRECTION
-TICK has happened
-Apple at: 7 19
-CHANGING DIRECTION
-TICK has happened
-Apple at: 7 19
-CHANGING DIRECTION
-TICK has happened
-Apple at: 7 19
-ch = 261
-1
-direction: 3
-CHANGING DIRECTION
-Apple at: 7 19
-CHANGING DIRECTION
-TICK has happened
-Apple at: 7 19
-ch = 32
-1
-direction: 2
-CHANGING DIRECTION
-ACTION is pressed
-Apple at: 7 19
-CHANGING DIRECTION
-TICK has happened
-Apple at: 7 19
-Apple at: 4 14
+Apple at: 1 18
 ch = 259
 1
 direction: 2
 CHANGING DIRECTION
-Apple at: 4 14
-ch = 32
-1
-direction: 1
-CHANGING DIRECTION
-ACTION is pressed
-Apple at: 4 14
+Apple at: 1 18
 CHANGING DIRECTION
 TICK has happened
-Apple at: 4 14
-ch = 32
-1
-direction: 1
-CHANGING DIRECTION
-ACTION is pressed
-Apple at: 4 14
-ch = 32
-1
-direction: 1
-CHANGING DIRECTION
-ACTION is pressed
-Apple at: 4 14
-CHANGING DIRECTION
-TICK has happened
-Apple at: 4 14
+Apple at: 1 18
 ch = 260
 1
 direction: 1
 CHANGING DIRECTION
-Apple at: 4 14
+Apple at: 1 18
+CHANGING DIRECTION
+TICK has happened
+Apple at: 1 18
 ch = 32
 1
 direction: 0
 CHANGING DIRECTION
 ACTION is pressed
-Apple at: 4 14
-CHANGING DIRECTION
-TICK has happened
-Apple at: 4 14
+Apple at: 1 18
 ch = 32
 1
 direction: 0
 CHANGING DIRECTION
 ACTION is pressed
-Apple at: 4 14
-ch = 32
-1
-direction: 0
-Apple at: 0 11
-ch = 259
-1
-direction: 0
-CHANGING DIRECTION
-Apple at: 0 11
-CHANGING DIRECTION
-TICK has happened
-Apple at: 0 11
-ch = 32
-1
-direction: 1
-CHANGING DIRECTION
-ACTION is pressed
-Apple at: 0 11
-ch = 32
-1
-direction: 1
-CHANGING DIRECTION
-ACTION is pressed
-Apple at: 0 11
-CHANGING DIRECTION
-TICK has happened
-Apple at: 0 11
-ch = 260
-1
-direction: 1
-CHANGING DIRECTION
-Apple at: 0 11
-CHANGING DIRECTION
-TICK has happened
-Apple at: 0 11
+Apple at: 1 18
 ch = 32
 1
 direction: 0
 CHANGING DIRECTION
 ACTION is pressed
-Apple at: 0 11
+Apple at: 1 18
 CHANGING DIRECTION
 TICK has happened
-Apple at: 0 11
+Apple at: 1 18
 ch = 258
 1
 direction: 0
 CHANGING DIRECTION
-Apple at: 0 11
+Apple at: 1 18
 CHANGING DIRECTION
 TICK has happened
-Apple at: 0 11
+Apple at: 1 18
+ch = 32
+1
+direction: 3
+CHANGING DIRECTION
+ACTION is pressed
+Apple at: 1 18
+ch = 32
+1
+direction: 3
+CHANGING DIRECTION
+ACTION is pressed
+Apple at: 1 18
+ch = 32
+1
+direction: 3
+CHANGING DIRECTION
+ACTION is pressed
+Apple at: 1 18
+ch = 32
+1
+direction: 3
+CHANGING DIRECTION
+ACTION is pressed
+Apple at: 1 18
+CHANGING DIRECTION
+TICK has happened
+Apple at: 1 18
 ch = 260
 1
 direction: 3
 CHANGING DIRECTION
-Apple at: 0 11
+Apple at: 1 18
 CHANGING DIRECTION
 TICK has happened
-Apple at: 0 11
-ch = 259
-1
-direction: 0
-Apple at: 1 5
-ch = 259
-1
-direction: 0
-CHANGING DIRECTION
-Apple at: 1 5
-CHANGING DIRECTION
-TICK has happened
-Apple at: 1 5
-ch = 32
-1
-direction: 1
-CHANGING DIRECTION
-ACTION is pressed
-Apple at: 1 5
-CHANGING DIRECTION
-TICK has happened
-Apple at: 1 5
-ch = 32
-1
-direction: 1
-CHANGING DIRECTION
-ACTION is pressed
-Apple at: 1 5
-CHANGING DIRECTION
-TICK has happened
-Apple at: 1 5
-ch = 32
-1
-direction: 1
-CHANGING DIRECTION
-ACTION is pressed
-Apple at: 1 5
-ch = 261
-1
-direction: 1
-CHANGING DIRECTION
-Apple at: 1 5
-ch = 32
-1
-direction: 2
-CHANGING DIRECTION
-ACTION is pressed
-Apple at: 1 5
-Apple at: 5 3
-ch = 32
-1
-direction: 2
-CHANGING DIRECTION
-ACTION is pressed
-Apple at: 5 3
-ch = 32
-1
-direction: 2
-CHANGING DIRECTION
-ACTION is pressed
-Apple at: 5 3
-ch = 32
-1
-direction: 2
-CHANGING DIRECTION
-ACTION is pressed
-Apple at: 5 3
-ch = 32
-1
-direction: 2
-CHANGING DIRECTION
-ACTION is pressed
-Apple at: 5 3
-CHANGING DIRECTION
-TICK has happened
-Apple at: 5 3
-ch = 32
-1
-direction: 2
-CHANGING DIRECTION
-ACTION is pressed
-Apple at: 5 3
-CHANGING DIRECTION
-TICK has happened
-Apple at: 5 3
-ch = 259
-1
-direction: 2
-CHANGING DIRECTION
-Apple at: 5 3
-CHANGING DIRECTION
-TICK has happened
-Apple at: 5 3
-CHANGING DIRECTION
-TICK has happened
-Apple at: 5 3
-ch = 260
-1
-direction: 1
-CHANGING DIRECTION
-Apple at: 5 3
-CHANGING DIRECTION
-TICK has happened
-Apple at: 5 3
-ch = 32
-1
-direction: 0
-CHANGING DIRECTION
-ACTION is pressed
-Apple at: 5 3
-ch = 32
-1
-direction: 0
-CHANGING DIRECTION
-ACTION is pressed
-Apple at: 5 3
-ch = 32
-1
-direction: 0
-Apple at: 9 12
-CHANGING DIRECTION
-TICK has happened
-Apple at: 9 12
-ch = 32
-1
-direction: 0
-CHANGING DIRECTION
-ACTION is pressed
-Apple at: 9 12
+Apple at: 1 18
 ch = 258
 1
 direction: 0
 CHANGING DIRECTION
-Apple at: 9 12
+Apple at: 1 18
+ch = 32
+1
+direction: 3
+CHANGING DIRECTION
+ACTION is pressed
+Apple at: 1 18
+ch = 32
+1
+direction: 3
+CHANGING DIRECTION
+ACTION is pressed
+Apple at: 1 18
 CHANGING DIRECTION
 TICK has happened
-Apple at: 9 12
+Apple at: 1 18
 ch = 32
 1
 direction: 3
 CHANGING DIRECTION
 ACTION is pressed
-Apple at: 9 12
-ch = 32
-1
-direction: 3
-CHANGING DIRECTION
-ACTION is pressed
-Apple at: 9 12
-CHANGING DIRECTION
-TICK has happened
-Apple at: 9 12
-ch = 32
-1
-direction: 3
-CHANGING DIRECTION
-ACTION is pressed
-Apple at: 9 12
-ch = 32
-1
-direction: 3
-CHANGING DIRECTION
-ACTION is pressed
-Apple at: 9 12
-ch = 32
-1
-direction: 3
-CHANGING DIRECTION
-ACTION is pressed
-Apple at: 9 12
-ch = 32
-1
-direction: 3
-CHANGING DIRECTION
-ACTION is pressed
-Apple at: 9 12
-CHANGING DIRECTION
-TICK has happened
-Apple at: 9 12
+Apple at: 1 18
 ch = 261
 1
 direction: 3
 CHANGING DIRECTION
-Apple at: 9 12
-CHANGING DIRECTION
-TICK has happened
-Apple at: 9 12
+Apple at: 9 10
 ch = 32
 1
 direction: 2
 CHANGING DIRECTION
 ACTION is pressed
-Apple at: 9 12
+Apple at: 9 10
+CHANGING DIRECTION
+TICK has happened
+Apple at: 9 10
 ch = 32
 1
 direction: 2
 CHANGING DIRECTION
 ACTION is pressed
-Apple at: 9 12
+Apple at: 9 10
 CHANGING DIRECTION
 TICK has happened
-Apple at: 9 12
-ch = 32
-1
-direction: 2
-CHANGING DIRECTION
-ACTION is pressed
-Apple at: 9 12
-CHANGING DIRECTION
-TICK has happened
-Apple at: 9 12
+Apple at: 9 10
 ch = 259
 1
 direction: 2
-Apple at: 3 13
+CHANGING DIRECTION
+Apple at: 9 10
+ch = 32
+1
+direction: 1
+CHANGING DIRECTION
+ACTION is pressed
+Apple at: 9 10
 CHANGING DIRECTION
 TICK has happened
-Apple at: 3 13
+Apple at: 9 10
+ch = 32
+1
+direction: 1
+CHANGING DIRECTION
+ACTION is pressed
+Apple at: 9 10
+ch = 32
+1
+direction: 1
+CHANGING DIRECTION
+ACTION is pressed
+Apple at: 9 10
+ch = 32
+1
+direction: 1
+CHANGING DIRECTION
+ACTION is pressed
+Apple at: 9 10
+ch = 32
+1
+direction: 1
+CHANGING DIRECTION
+ACTION is pressed
+Apple at: 9 10
+ch = 32
+1
+direction: 1
+CHANGING DIRECTION
+ACTION is pressed
+Apple at: 9 10
+CHANGING DIRECTION
+TICK has happened
+Apple at: 9 10
+ch = 261
+1
+direction: 1
+CHANGING DIRECTION
+Apple at: 9 10
+CHANGING DIRECTION
+TICK has happened
+Apple at: 9 10
+CHANGING DIRECTION
+TICK has happened
+Apple at: 9 10
+CHANGING DIRECTION
+TICK has happened
+Apple at: 9 10
+CHANGING DIRECTION
+TICK has happened
+Apple at: 9 10
 ch = 259
+1
+direction: 2
+CHANGING DIRECTION
+Apple at: 5 3
+ch = 32
+1
+direction: 1
+CHANGING DIRECTION
+ACTION is pressed
+Apple at: 5 3
+CHANGING DIRECTION
+TICK has happened
+Apple at: 5 3
+ch = 32
+1
+direction: 1
+CHANGING DIRECTION
+ACTION is pressed
+Apple at: 5 3
+ch = 32
+1
+direction: 1
+CHANGING DIRECTION
+ACTION is pressed
+Apple at: 5 3
+ch = 32
+1
+direction: 1
+CHANGING DIRECTION
+ACTION is pressed
+Apple at: 5 3
+CHANGING DIRECTION
+TICK has happened
+Apple at: 5 3
+ch = 32
+1
+direction: 1
+CHANGING DIRECTION
+ACTION is pressed
+Apple at: 5 3
+ch = 260
+1
+direction: 1
+CHANGING DIRECTION
+Apple at: 5 3
+ch = 32
+1
+direction: 0
+CHANGING DIRECTION
+ACTION is pressed
+Apple at: 5 3
+CHANGING DIRECTION
+TICK has happened
+Apple at: 5 3
+ch = 32
+1
+direction: 0
+CHANGING DIRECTION
+ACTION is pressed
+Apple at: 5 3
+ch = 32
+1
+direction: 0
+CHANGING DIRECTION
+ACTION is pressed
+Apple at: 5 3
+CHANGING DIRECTION
+TICK has happened
+Apple at: 6 0
+ch = 259
+1
+direction: 0
+CHANGING DIRECTION
+Apple at: 6 0
+CHANGING DIRECTION
+TICK has happened
+Apple at: 6 0
+ch = 261
+1
+direction: 1
+CHANGING DIRECTION
+Apple at: 6 0
+CHANGING DIRECTION
+TICK has happened
+Apple at: 6 0
+CHANGING DIRECTION
+TICK has happened
+Apple at: 6 0
+CHANGING DIRECTION
+TICK has happened
+Apple at: 6 0
+ch = 259
+1
+direction: 2
+CHANGING DIRECTION
+Apple at: 6 0
+ch = 32
+1
+direction: 1
+CHANGING DIRECTION
+ACTION is pressed
+Apple at: 6 0
+CHANGING DIRECTION
+TICK has happened
+Apple at: 6 0
+ch = 260
+1
+direction: 1
+CHANGING DIRECTION
+Apple at: 6 0
+ch = 32
+1
+direction: 0
+CHANGING DIRECTION
+ACTION is pressed
+Apple at: 6 0
+CHANGING DIRECTION
+TICK has happened
+Apple at: 6 17
+ch = 32
+1
+direction: 0
+CHANGING DIRECTION
+ACTION is pressed
+Apple at: 6 17
+ch = 32
+1
+direction: 0
+CHANGING DIRECTION
+ACTION is pressed
+Apple at: 6 17
+ch = 259
+1
+direction: 0
+CHANGING DIRECTION
+Apple at: 6 17
+ch = 258
+1
+direction: 1
+CHANGING DIRECTION
+Apple at: 6 17
+CHANGING DIRECTION
+TICK has happened
+ch = 258
 4
-direction: 2
-ch = 10
-4
-direction: 2
-CHANGING DIRECTION
-TICK has happened
-CHANGING DIRECTION
-TICK has happened
-CHANGING DIRECTION
-TICK has happened
-CHANGING DIRECTION
-TICK has happened
-CHANGING DIRECTION
-TICK has happened
-CHANGING DIRECTION
-TICK has happened
+direction: 1

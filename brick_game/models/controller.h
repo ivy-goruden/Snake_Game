@@ -1,6 +1,8 @@
 #pragma once
 #include <sys/time.h>
 
+#include <cstddef>
+
 #include "../globals.h"
 #include "gameModel.h"
 #include "render.h"
@@ -18,6 +20,7 @@ class Controller {
   void Run();
   void Quit();
   bool Tick();
+  void TerminateHandler();
   Controller(GameModel* model, Render* render) {
     this->model = model;
     this->render = render;
@@ -61,5 +64,27 @@ bool s21::Controller::Tick() {
     return 1;
   }
   return 0;
+}
+
+// чтобы убить ncurses если это не удастся
+// родителям(Snake_Render, Tetris_Render)
+void s21::Controller::TerminateHandler() {
+  printf("Работает перехват ошибок\n");
+  try {
+    if (std::current_exception()) {
+      std::rethrow_exception(std::current_exception());
+    }
+  } catch (const std::exception& e) {
+    std::cerr << "Unhandled Exception: " << e.what() << std::endl;
+  } catch (...) {
+    std::cerr << "Unknown exception caught in terminate handler." << std::endl;
+  }
+  if (this->render != nullptr) {
+    delete this->render;
+  }
+  if (this->model != nullptr) {
+    delete this->model;
+  }
+  std::abort();
 }
 }  // namespace s21
