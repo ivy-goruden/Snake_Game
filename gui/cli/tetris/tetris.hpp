@@ -104,11 +104,9 @@ class Tetris_Render : public s21::Render {
           break;
         case KEY_ENTER:
           action = Enter;
-          write_log("Enter is sent from gui");
           break;
         case '\n':
           action = Enter;
-          write_log("Enter is sent from gui");
           break;
       }
     }

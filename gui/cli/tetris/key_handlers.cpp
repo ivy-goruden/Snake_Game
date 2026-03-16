@@ -3,8 +3,6 @@
 namespace s21 {
 
 bool Tetris_Render::Waiting_Handler(int key) {
-  write_log("WAITING HANDLER");
-  write_log("ВВОД: %c", key);
   if (key == 's') {
     ChangeState(ST_MOVE);
     return true;

@@ -40,8 +40,6 @@ void Tetris_Game::InitFSM() {
 }
 
 Frontend_Interface* s21::Tetris_Game::updateCurrentState(UserAction_t action) {
-  write_log("key is %d", action);
-  write_log("Game state is: %d", this->cur_state);
   const auto& triggers = this->FSM_Triggers[this->cur_state];
   if (this->cur_state < SIZE) {
     s21::Tetris_Game::Handler main_func = this->FSM_Handlers[cur_state];

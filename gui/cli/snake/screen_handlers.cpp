@@ -16,7 +16,6 @@ void Snake_Render::MoveScreen_Handler() {
   int rowsPerSeg = this->height / HEIGHT;
   int colsPerSeg = this->width / WIDTH;
   Position apple = this->model->GetApple();
-  write_log("Apple at: %d %d", apple.x, apple.y);
   for (int i = 0; i < rowsPerSeg; ++i) {
     for (int j = 0; j < colsPerSeg; ++j) {
       mvwprintw(this->window, apple.y * rowsPerSeg + i + 1,

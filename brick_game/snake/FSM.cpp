@@ -5,7 +5,6 @@
 
 namespace s21 {
 void s21::Snake_Game::Move_Handler(UserAction_t action) {
-  write_log("CHANGING DIRECTION");
   switch (action) {
     case Left:
       if (this->direction != static_cast<Direction>(RIGHT))
@@ -24,11 +23,9 @@ void s21::Snake_Game::Move_Handler(UserAction_t action) {
         this->direction = static_cast<Direction>(DOWN);
       break;
     case Action:
-      write_log("ACTION is pressed");
       this->Forward();
       break;
     case Tick:
-      write_log("TICK has happened");
       this->Forward();
       break;
     default:

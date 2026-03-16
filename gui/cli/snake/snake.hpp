@@ -52,7 +52,6 @@ class Snake_Render : public s21::Render {
  public:
   Snake_Render(s21::SnakeFrontendData* mdl, int width = 10, int height = 20,
                int start_y = 0, int start_x = 0) {
-    write_log("Snake_Render Constructor Start");
     this->model = mdl;
     this->width = width;
     this->height = height;
@@ -65,10 +64,8 @@ class Snake_Render : public s21::Render {
     nodelay(stdscr, TRUE);
     this->window =
         newwin(this->height + 2, this->width + 2, this->start_y, this->start_x);
-    write_log("Snake_Render Window Created");
     this->stats_window = newwin(this->height + 2, 20, this->start_y,
                                 this->start_x + this->width + 3);
-    write_log("Snake_Render Stats Window Created");
     keypad(this->window, TRUE);
     keypad(this->stats_window, TRUE);
     keypad(stdscr, TRUE);
@@ -79,11 +76,6 @@ class Snake_Render : public s21::Render {
   UserAction_t GetAction() override {
     usleep(20000);
     int ch = getch();
-    if (ch != ERR) {
-      write_log("ch = %d", ch);
-      write_log("%d", this->cur_state);
-      write_log("direction: %d", this->model->GetDirection());
-    }
     UserAction_t action = No_Action;
 
     InputHandler handle = this->GetInputHandler();
@@ -151,7 +143,7 @@ class Snake_Render : public s21::Render {
     box(this->stats_window, 0, 0);
     mvwprintw(this->stats_window, 1, 2, "Score: %d", this->model->GetScore());
     mvwprintw(this->stats_window, 3, 2, "High Score: %d",
-              this->model->GetHighScore());
+              std::max(this->model->GetHighScore(), this->model->GetScore()));
     mvwprintw(this->stats_window, 5, 2, "Level: %d", this->model->GetLevel());
     wrefresh(this->stats_window);
   }

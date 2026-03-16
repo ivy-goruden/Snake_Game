@@ -5,7 +5,6 @@
 namespace s21 {
 
 Snake_Game::Snake_Game() {
-  write_log("Snake_Game Constructor Start");
   this->lenght = START_SEG;
   this->direction = RIGHT;
   this->cur_state = ST_MOVE;
@@ -14,17 +13,12 @@ Snake_Game::Snake_Game() {
   this->width = WIDTH;
   this->height = HEIGHT;
   InitBody();
-  write_log("InitBody Done");
   Get_HIScore();
-  write_log("Get_HIScore Done");
   InitFSM();
-  write_log("InitFSM Done");
   NewApple();
-  write_log("NewApple Done");
 }
 // инициализация тела перед началом игры
 void s21::Snake_Game::InitBody() {
-  write_log("InitBody Start");
   int center_y = HEIGHT / 2 - 1;
   int center_x = WIDTH / 2 - 1;
   for (int i = 0; i < START_SEG; i++) {
@@ -167,5 +161,9 @@ void s21::Snake_Game::Get_HIScore() {
     this->highScore = 0;
   }
 }
+// Setters
+void s21::Snake_Game::SetDirection(Direction dir) { this->direction = dir; }
+// Getters
+int s21::Snake_Game::GetLenght() const { return this->lenght; }
 
 }  // namespace s21

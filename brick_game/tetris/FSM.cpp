@@ -26,11 +26,9 @@ void Tetris_Game::Falling_Handler(UserAction_t action) {
       this->AccelerateFigure();
       break;
     case Action:
-      write_log("ACTION is pressed");
       this->RotateFigure();
       break;
     case Tick:
-      write_log("TICK has happened");
       if (!collision(this->figure.x, this->figure.y + 1, this->figure.figure)) {
         this->figure.y += 1;
       }
@@ -56,9 +54,7 @@ void Tetris_Game::Lock_Handler(UserAction_t) {
 }
 
 void Tetris_Game::Over_Handler(UserAction_t action) {
-  write_log("Got a key");
   if (action == Enter) {
-    write_log("Pressed an enter");
     this->reset();
   }
 }

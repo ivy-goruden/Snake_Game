@@ -32,17 +32,20 @@ class Snake_Game : public GameModel, public SnakeFrontendData {
   std::array<Handler, SIZE> FSM_Handlers;
   State cur_state;
 
-  void InitBody();
+ protected:
+  // Handlers
   void Move_Handler(UserAction_t);
   void Over_Handler(UserAction_t);
   void Eating_Handler(UserAction_t);
+  // Triggers
   bool FoundApple();
   bool Smashed();
   bool isWin();
   bool isOver();
+  // Helpers
   void Forward();
   void NewApple();
-  Position getNextPos();
+  void InitBody();
 
  public:
   int START_SEG = 4;
@@ -58,5 +61,12 @@ class Snake_Game : public GameModel, public SnakeFrontendData {
   void reset() override;
   void Save_HIScore() override;
   void Get_HIScore() override;
+
+  // Setters
+  void SetDirection(Direction dir);
+
+  // Getters
+  int GetLenght() const;
+  Position getNextPos();
 };
 }  // namespace s21
