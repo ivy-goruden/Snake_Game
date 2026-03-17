@@ -26,13 +26,9 @@ typedef struct Position {
   int y;
 
 #ifdef __cplusplus
-  bool operator==(const Position& other) const {
-    return x == other.x && y == other.y;
-  }
-
-  bool operator!=(const Position& other) const {
-    return x != other.x || y != other.y;
-  }
+  bool operator==(const Position& other) const;
+  bool operator!=(const Position& other) const;
+  bool operator<(const Position& other) const;
 #endif
 } Position;
 

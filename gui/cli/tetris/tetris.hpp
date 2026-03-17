@@ -149,7 +149,7 @@ class Tetris_Render : public s21::Render {
       int indexX = 0;
       for (auto val : row) {
         if (val == 1) {
-          mvwprintw(this->stats_window, 7 + indexY, 2 + indexX, "#", val);
+          mvwprintw(this->stats_window, 7 + indexY, 2 + indexX, "#");
         }
         indexX++;
       }
@@ -161,6 +161,7 @@ class Tetris_Render : public s21::Render {
   void ChangeState(State state) { this->cur_state = state; }
 
   ~Tetris_Render() override {
+    write_log("Выключаем ncurses тетрис");
     delwin(this->window);
     delwin(this->stats_window);
     endwin();

@@ -9,11 +9,11 @@
 namespace s21 {
 
 class Snake_Game : public GameModel, public SnakeFrontendData {
- private:
+ protected:
   int lenght;
   std::list<Position> body;
   Direction direction;
-  Position apple;
+  Position apple = {};  // initialize x and y with default
   bool ateApple;
   int width = 10;
   int height = 20;
@@ -32,7 +32,6 @@ class Snake_Game : public GameModel, public SnakeFrontendData {
   std::array<Handler, SIZE> FSM_Handlers;
   State cur_state;
 
- protected:
   // Handlers
   void Move_Handler(UserAction_t);
   void Over_Handler(UserAction_t);
@@ -46,6 +45,8 @@ class Snake_Game : public GameModel, public SnakeFrontendData {
   void Forward();
   void NewApple();
   void InitBody();
+  void ValidateBody();
+  Position getNextPos();
 
  public:
   int START_SEG = 4;
@@ -61,12 +62,5 @@ class Snake_Game : public GameModel, public SnakeFrontendData {
   void reset() override;
   void Save_HIScore() override;
   void Get_HIScore() override;
-
-  // Setters
-  void SetDirection(Direction dir);
-
-  // Getters
-  int GetLenght() const;
-  Position getNextPos();
 };
 }  // namespace s21

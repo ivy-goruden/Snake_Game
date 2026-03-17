@@ -4,7 +4,7 @@
 #include "snake.hpp"
 
 namespace s21 {
-void s21::Snake_Game::Move_Handler(UserAction_t action) {
+void Snake_Game::Move_Handler(UserAction_t action) {
   switch (action) {
     case Left:
       if (this->direction != static_cast<Direction>(RIGHT))
@@ -43,7 +43,7 @@ void Snake_Game::Over_Handler(UserAction_t action) {
   }
 }
 
-void s21::Snake_Game::Eating_Handler(UserAction_t action) {
+void Snake_Game::Eating_Handler(UserAction_t action) {
   this->score += 1;
   this->level = std::min(int(this->score / 5.0), 10);
   this->timer *= 1 - 0.1 * this->level;
@@ -52,9 +52,9 @@ void s21::Snake_Game::Eating_Handler(UserAction_t action) {
   this->Move_Handler(action);
 }
 
-bool s21::Snake_Game::FoundApple() { return this->body.front() == this->apple; }
+bool Snake_Game::FoundApple() { return this->body.front() == this->apple; }
 
-bool s21::Snake_Game::Smashed() {
+bool Snake_Game::Smashed() {
   Position headPos = this->body.front();
   bool SmashedIntoSelf = false;
   bool SmashedIntoBorder = (headPos.x < 0 || headPos.x >= this->width) ||
@@ -68,7 +68,7 @@ bool s21::Snake_Game::Smashed() {
   return SmashedIntoBorder || SmashedIntoSelf;
 }
 
-bool s21::Snake_Game::isOver() {
+bool Snake_Game::isOver() {
   if (isWin() || Smashed()) {
     this->Save_HIScore();
     return true;

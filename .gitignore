@@ -4,3 +4,5 @@ log.txt
 task.md
 *.o
 *.a
+*.gcda
+*.gcno

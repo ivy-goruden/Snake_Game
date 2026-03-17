@@ -1,5 +1,7 @@
 #include "snake.hpp"
 
+#include <map>
+
 #include "../globals.h"
 
 namespace s21 {
@@ -18,7 +20,7 @@ Snake_Game::Snake_Game() {
   NewApple();
 }
 // инициализация тела перед началом игры
-void s21::Snake_Game::InitBody() {
+void Snake_Game::InitBody() {
   int center_y = HEIGHT / 2 - 1;
   int center_x = WIDTH / 2 - 1;
   for (int i = 0; i < START_SEG; i++) {
@@ -27,14 +29,14 @@ void s21::Snake_Game::InitBody() {
   }
 }
 
-Frontend_Interface* s21::Snake_Game::updateCurrentState(UserAction_t action) {
+Frontend_Interface* Snake_Game::updateCurrentState(UserAction_t action) {
   const auto& triggers = this->FSM_Triggers[this->cur_state];
   if (this->cur_state < SIZE) {
-    s21::Snake_Game::Handler main_func = this->FSM_Handlers[cur_state];
+    Snake_Game::Handler main_func = this->FSM_Handlers[cur_state];
     if (main_func) (this->*main_func)(action);  // выполнение функции состояния
     for (std::size_t i = 0; i < triggers.size(); ++i) {
       if (triggers[i] && (this->*triggers[i])()) {
-        this->cur_state = s21::Snake_Game::State(i);
+        this->cur_state = Snake_Game::State(i);
         return this;
       }
     }
@@ -42,12 +44,12 @@ Frontend_Interface* s21::Snake_Game::updateCurrentState(UserAction_t action) {
   return this;
 }
 
-bool s21::Snake_Game::isWin() {
+bool Snake_Game::isWin() {
   return body.size() >= static_cast<std::size_t>(this->height) *
                             static_cast<std::size_t>(this->width);
 }
 
-void s21::Snake_Game::Forward() {
+void Snake_Game::Forward() {
   Position headPos = getNextPos();
 
   this->body.push_front(headPos);
@@ -55,9 +57,10 @@ void s21::Snake_Game::Forward() {
     this->body.pop_back();
   }
   this->ateApple = false;
+  this->ValidateBody();
 }
 
-Position s21::Snake_Game::getNextPos() {
+Position Snake_Game::getNextPos() {
   Position headPos;
   Position prevPos = this->body.front();
   Direction dir = this->direction;
@@ -78,7 +81,7 @@ Position s21::Snake_Game::getNextPos() {
   return headPos;
 }
 
-void s21::Snake_Game::NewApple() {
+void Snake_Game::NewApple() {
   std::list<Position> availableSpots;
   for (int i = 0; i < this->width; ++i) {
     for (int x = 0; x < this->height; ++x) {
@@ -139,7 +142,7 @@ void Snake_Game::reset() {
   NewApple();
 }
 
-void s21::Snake_Game::Save_HIScore() {
+void Snake_Game::Save_HIScore() {
   FILE* file = fopen("brick_game/snake/score.txt", "w");
   if (file == NULL) {
     perror("Error opening file");
@@ -150,7 +153,7 @@ void s21::Snake_Game::Save_HIScore() {
   fclose(file);
 }
 
-void s21::Snake_Game::Get_HIScore() {
+void Snake_Game::Get_HIScore() {
   FILE* file = fopen("brick_game/snake/score.txt", "r");
   if (file != NULL) {
     if (fscanf(file, "%d", &this->highScore) != 1) {
@@ -161,9 +164,7 @@ void s21::Snake_Game::Get_HIScore() {
     this->highScore = 0;
   }
 }
-// Setters
-void s21::Snake_Game::SetDirection(Direction dir) { this->direction = dir; }
-// Getters
-int s21::Snake_Game::GetLenght() const { return this->lenght; }
+
+void Snake_Game::ValidateBody() { this->lenght = this->body.size(); }
 
 }  // namespace s21

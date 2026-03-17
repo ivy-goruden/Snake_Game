@@ -18,12 +18,13 @@ std::unique_ptr<s21::Controller> c;
 
 void TerminateHandler() {
   c->TerminateHandler();
+  c.reset();
   std::abort();
 }
 
 void SignalHandler(int signum) {
   if (signum == SIGINT) {
-    c->TerminateHandler();
+    c.reset();
     std::exit(signum);  // exit вызовет деструкторы глобальных объектов
   }
 }
@@ -56,7 +57,7 @@ int main() {
       default:
         return 0;
     }
-    c = std::make_unique<s21::Controller>(game.get(), render.get());
+    c = std::make_unique<s21::Controller>(std::move(game), std::move(render));
     c->Run();
   }
   return 0;

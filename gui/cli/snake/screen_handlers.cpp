@@ -7,9 +7,9 @@ void Snake_Render::WaitingScreen_Handler() {
   const char* msg2 = "TO START ";
   int x = (this->width - sizeof(msg) + 1) / 2;
   int y = this->height / 2;
-  mvwprintw(this->window, y, x, msg);
+  mvwprintw(this->window, y, x, "%s", msg);
   x = (this->width - sizeof(msg2) + 1) / 2;
-  mvwprintw(this->window, y + 1, x, msg2);
+  mvwprintw(this->window, y + 1, x, "%s", msg2);
 }
 
 void Snake_Render::MoveScreen_Handler() {
@@ -47,7 +47,7 @@ void Snake_Render::MoveScreen_Handler() {
     for (int i = 0; i < rowsPerSeg; ++i) {
       for (int j = 0; j < colsPerSeg; ++j) {
         mvwprintw(this->window, pos.y * rowsPerSeg + i + 1,
-                  pos.x * colsPerSeg + j + 1, el);
+                  pos.x * colsPerSeg + j + 1, "%s", el);
       }
     }
   }
@@ -57,7 +57,7 @@ void Snake_Render::PauseScreen_Handler() {
   const char* msg = "PAUSED";
   int x = (this->width - sizeof(msg) + 1) / 2;
   int y = this->height / 2;
-  mvwprintw(this->window, y, x, msg);
+  mvwprintw(this->window, y, x, "%s", msg);
 }
 
 void Snake_Render::WinScreen_Handler() {
@@ -66,13 +66,13 @@ void Snake_Render::WinScreen_Handler() {
   const char* msg2 = "TO RESTART";
   int x = (this->width - sizeof(msg) + 1) / 2;
   int y = this->height / 2 - 1;
-  mvwprintw(this->window, y, x, msg);
+  mvwprintw(this->window, y, x, "%s", msg);
 
   x = (this->width - sizeof(msg1) + 1) / 2;
-  mvwprintw(this->window, y + 1, x, msg1);
+  mvwprintw(this->window, y + 1, x, "%s", msg1);
 
   x = (this->width - sizeof(msg2) + 1) / 2;
-  mvwprintw(this->window, y + 2, x, msg2);
+  mvwprintw(this->window, y + 2, x, "%s", msg2);
 }
 
 void Snake_Render::LoseScreen_Handler() {
@@ -81,12 +81,12 @@ void Snake_Render::LoseScreen_Handler() {
   const char* msg2 = "TO RESTART";
   int x = (this->width - sizeof(msg) + 1) / 2;
   int y = this->height / 2 - 1;
-  mvwprintw(this->window, y, x, msg);
+  mvwprintw(this->window, y, x, "%s", msg);
 
   x = (this->width - sizeof(msg1) + 1) / 2;
-  mvwprintw(this->window, y + 1, x, msg1);
+  mvwprintw(this->window, y + 1, x, "%s", msg1);
 
   x = (this->width - sizeof(msg2) + 1) / 2;
-  mvwprintw(this->window, y + 2, x, msg2);
+  mvwprintw(this->window, y + 2, x, "%s", msg2);
 }
 }  // namespace s21

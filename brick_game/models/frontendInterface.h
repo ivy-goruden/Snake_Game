@@ -15,7 +15,7 @@ class Frontend_Interface {
   virtual bool IsWin() = 0;
   virtual bool IsLose() = 0;
   int GetScore() const { return this->score; }
-  int GetHighScore() const { return this->highScore; }
+  int GetHighScore() const { return std::max(this->highScore, this->score); }
   int GetLevel() const { return this->level; }
   virtual void Save_HIScore() = 0;
   virtual void Get_HIScore() = 0;

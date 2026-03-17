@@ -151,6 +151,7 @@ class Snake_Render : public s21::Render {
   void ChangeState(State state) { this->cur_state = state; }
 
   ~Snake_Render() override {
+    write_log("Выключаем ncurses змейка");
     delwin(this->window);
     delwin(this->stats_window);
     endwin();

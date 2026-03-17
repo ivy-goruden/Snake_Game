@@ -2,6 +2,7 @@
 #include <sys/time.h>
 
 #include <cstddef>
+#include <memory>
 
 #include "../globals.h"
 #include "gameModel.h"
@@ -10,8 +11,8 @@ namespace s21 {
 
 class Controller {
  protected:
-  s21::GameModel* model;
-  Render* render;
+  std::unique_ptr<s21::GameModel> model;
+  std::unique_ptr<Render> render;
   bool running = true;
   timeval lastTime = {0, 0};
 
@@ -21,9 +22,9 @@ class Controller {
   void Quit();
   bool Tick();
   void TerminateHandler();
-  Controller(GameModel* model, Render* render) {
-    this->model = model;
-    this->render = render;
+  Controller(std::unique_ptr<GameModel> model, std::unique_ptr<Render> render) {
+    this->model = std::move(model);
+    this->render = std::move(render);
   }
   ~Controller() = default;
 };
@@ -79,12 +80,6 @@ void s21::Controller::TerminateHandler() {
   } catch (...) {
     std::cerr << "Unknown exception caught in terminate handler." << std::endl;
   }
-  if (this->render != nullptr) {
-    delete this->render;
-  }
-  if (this->model != nullptr) {
-    delete this->model;
-  }
-  std::abort();
+  
 }
 }  // namespace s21
