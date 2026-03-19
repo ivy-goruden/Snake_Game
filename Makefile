@@ -23,6 +23,9 @@ test: clean $(SNAKE_GAME_OBJS) $(TETRIS_GAME_OBJS) $(GLOBALS_OBJS)
 brick_game.a: $(SNAKE_GAME_OBJS) $(TETRIS_GAME_OBJS) $(GLOBALS_OBJS)
 	ar rcs brick_game.a $(SNAKE_GAME_OBJS) $(TETRIS_GAME_OBJS) $(GLOBALS_OBJS)
 	
+compile_desktop:
+	qmake qt_test.pro -o Makefile_qt
+	make -f Makefile_qt
 
 %.o: brick_game/snake/%.cpp
 	g++ $(FLAGS) --coverage -g -O0  -c $< -o $@

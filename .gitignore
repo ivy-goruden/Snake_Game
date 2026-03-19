@@ -6,3 +6,4 @@ task.md
 *.a
 *.gcda
 *.gcno
+gui/desktop/snake/build/*
