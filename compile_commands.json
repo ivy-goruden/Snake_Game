@@ -1,0 +1,44 @@
+[
+  {
+    "directory": "/Users/anya/Documents/git/Snake_Game/gui/desktop/Snake/build",
+    "command": "/usr/bin/c++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/Users/anya/Documents/git/Snake_Game/gui/desktop/Snake/build/Snake_autogen/include -isystem /opt/homebrew/lib/QtCore.framework/Headers -iframework /opt/homebrew/lib -isystem /opt/homebrew/share/qt/mkspecs/macx-clang -isystem /opt/homebrew/include -isystem /opt/homebrew/lib/QtWidgets.framework/Headers -isystem /opt/homebrew/lib/QtGui.framework/Headers -std=gnu++17 -arch arm64 -o CMakeFiles/Snake.dir/Snake_autogen/mocs_compilation.cpp.o -c /Users/anya/Documents/git/Snake_Game/gui/desktop/Snake/build/Snake_autogen/mocs_compilation.cpp",
+    "file": "/Users/anya/Documents/git/Snake_Game/gui/desktop/Snake/build/Snake_autogen/mocs_compilation.cpp",
+    "output": "CMakeFiles/Snake.dir/Snake_autogen/mocs_compilation.cpp.o"
+  },
+  {
+    "directory": "/Users/anya/Documents/git/Snake_Game/gui/desktop/Snake/build",
+    "command": "/usr/bin/c++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/Users/anya/Documents/git/Snake_Game/gui/desktop/Snake/build/Snake_autogen/include -isystem /opt/homebrew/lib/QtCore.framework/Headers -iframework /opt/homebrew/lib -isystem /opt/homebrew/share/qt/mkspecs/macx-clang -isystem /opt/homebrew/include -isystem /opt/homebrew/lib/QtWidgets.framework/Headers -isystem /opt/homebrew/lib/QtGui.framework/Headers -std=gnu++17 -arch arm64 -o CMakeFiles/Snake.dir/main.cpp.o -c /Users/anya/Documents/git/Snake_Game/gui/desktop/Snake/main.cpp",
+    "file": "/Users/anya/Documents/git/Snake_Game/gui/desktop/Snake/main.cpp",
+    "output": "CMakeFiles/Snake.dir/main.cpp.o"
+  },
+  {
+    "directory": "/Users/anya/Documents/git/Snake_Game/gui/desktop/Snake/build",
+    "command": "/usr/bin/c++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/Users/anya/Documents/git/Snake_Game/gui/desktop/Snake/build/Snake_autogen/include -isystem /opt/homebrew/lib/QtCore.framework/Headers -iframework /opt/homebrew/lib -isystem /opt/homebrew/share/qt/mkspecs/macx-clang -isystem /opt/homebrew/include -isystem /opt/homebrew/lib/QtWidgets.framework/Headers -isystem /opt/homebrew/lib/QtGui.framework/Headers -std=gnu++17 -arch arm64 -o CMakeFiles/Snake.dir/snake_desktop_render.cpp.o -c /Users/anya/Documents/git/Snake_Game/gui/desktop/Snake/snake_desktop_render.cpp",
+    "file": "/Users/anya/Documents/git/Snake_Game/gui/desktop/Snake/snake_desktop_render.cpp",
+    "output": "CMakeFiles/Snake.dir/snake_desktop_render.cpp.o"
+  },
+  {
+    "directory": "/Users/anya/Documents/git/Snake_Game/gui/desktop/snake1/build",
+    "command": "/usr/bin/c++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/Users/anya/Documents/git/Snake_Game/gui/desktop/snake1/build/Snake_Game_autogen/include -isystem /opt/homebrew/lib/QtCore.framework/Headers -iframework /opt/homebrew/lib -isystem /opt/homebrew/share/qt/mkspecs/macx-clang -isystem /opt/homebrew/include -isystem /opt/homebrew/lib/QtWidgets.framework/Headers -isystem /opt/homebrew/lib/QtGui.framework/Headers -std=gnu++17 -arch arm64 -o CMakeFiles/Snake_Game.dir/Snake_Game_autogen/mocs_compilation.cpp.o -c /Users/anya/Documents/git/Snake_Game/gui/desktop/snake1/build/Snake_Game_autogen/mocs_compilation.cpp",
+    "file": "/Users/anya/Documents/git/Snake_Game/gui/desktop/snake1/build/Snake_Game_autogen/mocs_compilation.cpp",
+    "output": "CMakeFiles/Snake_Game.dir/Snake_Game_autogen/mocs_compilation.cpp.o"
+  },
+  {
+    "directory": "/Users/anya/Documents/git/Snake_Game/gui/desktop/snake1/build",
+    "command": "/usr/bin/c++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/Users/anya/Documents/git/Snake_Game/gui/desktop/snake1/build/Snake_Game_autogen/include -isystem /opt/homebrew/lib/QtCore.framework/Headers -iframework /opt/homebrew/lib -isystem /opt/homebrew/share/qt/mkspecs/macx-clang -isystem /opt/homebrew/include -isystem /opt/homebrew/lib/QtWidgets.framework/Headers -isystem /opt/homebrew/lib/QtGui.framework/Headers -std=gnu++17 -arch arm64 -o CMakeFiles/Snake_Game.dir/main.cpp.o -c /Users/anya/Documents/git/Snake_Game/gui/desktop/snake1/main.cpp",
+    "file": "/Users/anya/Documents/git/Snake_Game/gui/desktop/snake1/main.cpp",
+    "output": "CMakeFiles/Snake_Game.dir/main.cpp.o"
+  },
+  {
+    "directory": "/Users/anya/Documents/git/Snake_Game/gui/desktop/snake1/build",
+    "command": "/usr/bin/c++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/Users/anya/Documents/git/Snake_Game/gui/desktop/snake1/build/Snake_Game_autogen/include -isystem /opt/homebrew/lib/QtCore.framework/Headers -iframework /opt/homebrew/lib -isystem /opt/homebrew/share/qt/mkspecs/macx-clang -isystem /opt/homebrew/include -isystem /opt/homebrew/lib/QtWidgets.framework/Headers -isystem /opt/homebrew/lib/QtGui.framework/Headers -std=gnu++17 -arch arm64 -o CMakeFiles/Snake_Game.dir/mainwindow.cpp.o -c /Users/anya/Documents/git/Snake_Game/gui/desktop/snake1/mainwindow.cpp",
+    "file": "/Users/anya/Documents/git/Snake_Game/gui/desktop/snake1/mainwindow.cpp",
+    "output": "CMakeFiles/Snake_Game.dir/mainwindow.cpp.o"
+  },
+  {
+    "directory": "/Users/anya/Documents/git/Snake_Game/gui/desktop/snake1/build",
+    "command": "/usr/bin/c++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/Users/anya/Documents/git/Snake_Game/gui/desktop/snake1/build/Snake_Game_autogen/include -isystem /opt/homebrew/lib/QtCore.framework/Headers -iframework /opt/homebrew/lib -isystem /opt/homebrew/share/qt/mkspecs/macx-clang -isystem /opt/homebrew/include -isystem /opt/homebrew/lib/QtWidgets.framework/Headers -isystem /opt/homebrew/lib/QtGui.framework/Headers -std=gnu++17 -arch arm64 -o CMakeFiles/Snake_Game.dir/pixeltextwidget.cpp.o -c /Users/anya/Documents/git/Snake_Game/gui/desktop/snake1/pixeltextwidget.cpp",
+    "file": "/Users/anya/Documents/git/Snake_Game/gui/desktop/snake1/pixeltextwidget.cpp",
+    "output": "CMakeFiles/Snake_Game.dir/pixeltextwidget.cpp.o"
+  }
+]

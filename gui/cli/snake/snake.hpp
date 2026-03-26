@@ -12,8 +12,10 @@
 namespace s21 {
 
 class Snake_Render : public s21::Render {
- private:
+ protected:
   s21::SnakeFrontendData* model;
+
+ private:
   enum State { ST_WAITING, ST_MOVE, ST_PAUSE, ST_WIN, ST_LOSE };
   typedef bool (Snake_Render::*InputHandler)(int);
   typedef void (Snake_Render::*ScreenHandler)();

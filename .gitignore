@@ -7,3 +7,5 @@ task.md
 *.gcda
 *.gcno
 gui/desktop/snake/build/*
+gui/desktop/snake/.cache
+gui/desktop/snake1/*

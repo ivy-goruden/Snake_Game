@@ -50,7 +50,7 @@ gcov_report: clean test
 	open $(BUILD)/out/index.html
 
 install:
-	g++ $(FLAGS) $(SNAKE_GUI) $(SNAKE_GAME) $(TETRIS_GUI) $(TETRIS_GAME) $(MAIN_GAME) $(GLOBALS) -o game -lncursesw -lm
+	g++ $(FLAGS) $(SNAKE_GUI) $(SNAKE_GAME) $(TETRIS_GUI) $(TETRIS_GAME) $(MAIN_GAME) $(GLOBALS) -o game -lncurses -lm
 	install -d $(BUILD)
 	# Устанавливаем исполняемый файл
 	install -m 755 game $(BUILD)
@@ -71,7 +71,13 @@ dist:
 
 
 clean:
-	rm -f *.o *.a *.gcno *.gcda *.out *.info game $(BUILD)/*
+	rm -f -r *.o *.a *.gcno *.gcda *.out *.info game  $(BUILD)/*
 
 run:
 	valgrind --suppressions=ncurses.supp --leak-check=full $(BUILD)/game
+
+snake-desktop:
+	rm -f -r gui/desktop/Snake/build
+	cmake -B gui/desktop/Snake/build -S gui/desktop/Snake
+	cmake --build gui/desktop/Snake/build
+	./gui/desktop/Snake/build/Snake.app/Contents/MacOS/Snake

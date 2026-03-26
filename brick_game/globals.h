@@ -35,7 +35,7 @@ typedef struct Position {
 // Snake game defaults
 #define WIDTH 10
 #define HEIGHT 20
-#define S 200  // площадь игрового поля
+#define FIELD_AREA 200  // площадь игрового поля
 
 #ifdef __cplusplus
 template <typename T>

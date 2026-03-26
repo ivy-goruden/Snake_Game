@@ -10,9 +10,11 @@
 namespace s21 {
 
 class Controller {
- protected:
+ private:
   std::unique_ptr<s21::GameModel> model;
   std::unique_ptr<Render> render;
+
+ protected:
   bool running = true;
   timeval lastTime = {0, 0};
 
@@ -80,6 +82,5 @@ void s21::Controller::TerminateHandler() {
   } catch (...) {
     std::cerr << "Unknown exception caught in terminate handler." << std::endl;
   }
-  
 }
 }  // namespace s21
