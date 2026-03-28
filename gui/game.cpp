@@ -8,9 +8,9 @@
 #include <memory>
 
 #include "../brick_game/globals.h"
-#include "../brick_game/models/controller.h"
 #include "../brick_game/snake/snake.hpp"
 #include "../brick_game/tetris/tetris.hpp"
+#include "cli/cli_controller.h"
 #include "cli/snake/snake.hpp"
 #include "cli/tetris/tetris.hpp"
 
@@ -57,7 +57,8 @@ int main() {
       default:
         return 0;
     }
-    c = std::make_unique<s21::Controller>(std::move(game), std::move(render));
+    c = std::make_unique<s21::CLI_Controller>(std::move(game),
+                                              std::move(render));
     c->Run();
   }
   return 0;

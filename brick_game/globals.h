@@ -2,10 +2,8 @@
 #define BRICK_GAME
 
 #ifdef __cplusplus
-#include <iostream>
 #include <random>
 #endif
-
 typedef enum {
   No_Action,
   Start,

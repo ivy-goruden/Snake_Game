@@ -3,6 +3,7 @@
 
 #include <QKeyEvent>
 #include <QMainWindow>
+#include <QPainter>
 #include <QStackedWidget>
 #include <QTextEdit>
 
@@ -18,26 +19,33 @@ QT_END_NAMESPACE
 namespace s21 {
 class Snake_Desktop_Render : public QMainWindow, public s21::Render {
   Q_OBJECT
+  enum State { ST_WAITING, ST_MOVE, ST_PAUSE, ST_WIN, ST_LOSE };
+
  public:
-  explicit Snake_Desktop_Render(QWidget* parent = nullptr);
   explicit Snake_Desktop_Render(s21::SnakeFrontendData* mdl,
                                 QWidget* parent = nullptr);
   ~Snake_Desktop_Render() override;
 
   UserAction_t GetAction() override;
+  void SendAction(UserAction_t action);
   void UpdateState(s21::Frontend_Interface* model) override;
+  State Get_State();
+  bool isRunning();
 
  private slots:
   void on_tabWidget_currentChanged(int index);
+ signals:
+  void keyPressed(UserAction_t action);
 
  private:
   s21::SnakeFrontendData* model;
   Ui::Snake_Desktop_Render* ui;
-  UserAction_t action;
+  int W_HEIGHT = 600;
+  int W_WIDTH = 800;
   void keyPressEvent(QKeyEvent* event) override;
-  enum State { ST_WAITING, ST_MOVE, ST_PAUSE, ST_WIN, ST_LOSE };
+  void paintEvent(QPaintEvent* event) override;
   typedef bool (Snake_Desktop_Render::*InputHandler)(int);
-  typedef void (Snake_Desktop_Render::*ScreenHandler)();
+  typedef void (Snake_Desktop_Render::*ScreenHandler)(QPainter*);
   int height;
   int width;
   int start_y;
@@ -61,12 +69,12 @@ class Snake_Desktop_Render : public QMainWindow, public s21::Render {
   bool Win_Handler(int);
   bool Lose_Handler(int);
 
-  void WaitingScreen_Handler();
-  void MoveScreen_Handler();
-  void PauseScreen_Handler();
-  void WinScreen_Handler();
-  void LoseScreen_Handler();
-
+  void WaitingScreen_Handler(QPainter* paint);
+  void MoveScreen_Handler(QPainter* paint);
+  void PauseScreen_Handler(QPainter* paint);
+  void WinScreen_Handler(QPainter* paint);
+  void LoseScreen_Handler(QPainter* paint);
+  void Draw_Stats();
   InputHandler getInputHandler();
   void Draw();
 };

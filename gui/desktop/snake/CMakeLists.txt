@@ -8,6 +8,7 @@ set(CMAKE_AUTORCC ON)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(QT_NO_APPMAN_DEPLOYMENT ON)
 
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
@@ -15,13 +16,18 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 set(PROJECT_SOURCES
         main.cpp
         snake_desktop_render.cpp
+        desktop_snake_controller.h
         snake_desktop_render.h
         snake_desktop_render.ui
         ../../../brick_game/snake/snake.cpp
         ../../../brick_game/snake/snake_fsm.cpp
         ../../../brick_game/globals.cpp
+        ../../../brick_game/globals.h
         key_handlers.cpp
         screen_handlers.cpp
+        desktop_snake_controller.cpp
+        ../../../brick_game/models/controller.cpp
+
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
