@@ -13,5 +13,6 @@ class CLI_Controller : public Controller {
     this->render = std::move(render);
   }
   void Run() override;
+  bool Tick() override;
 };
 }  // namespace s21

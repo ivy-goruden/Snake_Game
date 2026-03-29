@@ -25,6 +25,6 @@ class Controller {
   virtual bool Tick() = 0;
   void TerminateHandler();
   Controller() {}
-  ~Controller() = default;
+  virtual ~Controller() = 0;
 };
 }  // namespace s21

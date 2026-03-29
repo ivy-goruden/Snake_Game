@@ -16,12 +16,6 @@
 
 std::unique_ptr<s21::Controller> c;
 
-void TerminateHandler() {
-  c->TerminateHandler();
-  c.reset();
-  std::abort();
-}
-
 void SignalHandler(int signum) {
   if (signum == SIGINT) {
     c.reset();
@@ -31,7 +25,6 @@ void SignalHandler(int signum) {
 
 int main() {
   init_log();
-  std::set_terminate(TerminateHandler);
   signal(SIGINT, SignalHandler);
   int choice;
   while (true) {

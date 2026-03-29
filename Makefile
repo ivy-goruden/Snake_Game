@@ -20,7 +20,7 @@ test: clean $(SNAKE_GAME_OBJS) $(TETRIS_GAME_OBJS) $(GLOBALS_OBJS)
 	g++ $(FLAGS) --coverage -g -O0 $(TEST_SRCS) $(SNAKE_GAME_OBJS) $(TETRIS_GAME_OBJS) $(GLOBALS_OBJS) -o $(BUILD)/test $(GTEST_LIBS)
 	./$(BUILD)/test
 
-brick_game.a: $(SNAKE_GAME_OBJS) $(TETRIS_GAME_OBJS) $(GLOBALS_OBJS)
+brick_game.a: $(SNAKE_GAME_OBJS) $(TETRIS_GAME_OBJS) $(GLOBALS_OBJS) brick_game/models/controller.cpp
 	ar rcs brick_game.a $(SNAKE_GAME_OBJS) $(TETRIS_GAME_OBJS) $(GLOBALS_OBJS)
 	
 compile_desktop:
@@ -77,7 +77,5 @@ run:
 	valgrind --suppressions=ncurses.supp --leak-check=full $(BUILD)/game
 
 snake-desktop:
-	rm -f -r gui/desktop/Snake/build
-	cmake -B gui/desktop/Snake/build -S gui/desktop/Snake
-	cmake --build gui/desktop/Snake/build
-	./gui/desktop/Snake/build/Snake.app/Contents/MacOS/Snake
+	./gui/desktop/Snake/Snake.app/Contents/MacOS/Snake
+	

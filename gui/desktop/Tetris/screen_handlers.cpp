@@ -1,17 +1,17 @@
 #include <QGraphicsRectItem>
 #include <QScreen>
 
-#include "build/Snake_autogen/include/ui_snake_desktop_render.h"
-#include "snake_desktop_render.h"
+#include "build/tetris_autogen/include/ui_tetris_desktop_render.h"
+#include "tetris_desktop_render.h"
 
-void s21::Snake_Desktop_Render::WaitingScreen_Handler(QPainter *paint) {
+void s21::Tetris_Desktop_Render::WaitingScreen_Handler(QPainter *paint) {
   this->ui->tabWidget->show();
   this->ui->tabWidget->setCurrentIndex(0);
 };
-void s21::Snake_Desktop_Render::MoveScreen_Handler(QPainter *paint) {
+void s21::Tetris_Desktop_Render::MoveScreen_Handler(QPainter *paint) {
   this->ui->tabWidget->hide();
 
-  auto body = this->model->GetBody();
+  auto field = this->model->GetField();
   paint->fillRect(rect(), Qt::black);
 
   int offset_y = 50;
@@ -27,32 +27,23 @@ void s21::Snake_Desktop_Render::MoveScreen_Handler(QPainter *paint) {
     paint->drawLine(offset_x, offset_y + i * cell_size,
                     offset_x + WIDTH * cell_size, offset_y + i * cell_size);
   }
-  paint->setBrush(Qt::red);
-  Position apple = this->model->GetApple();
-  paint->drawRect(offset_x + apple.x * cell_size,
-                  offset_y + apple.y * cell_size, cell_size, cell_size);
-
-  for (auto i = body.begin(); i != body.end(); i++) {
-    if (i == body.begin()) {
-      paint->setBrush(Qt::darkGreen);
-    } else {
-      paint->setBrush(Qt::green);
-    }
+  paint->setBrush(Qt::white);
+  for (auto i = 0; i < field.size(); i++) {
     paint->drawRect(offset_x + i->x * cell_size, offset_y + i->y * cell_size,
                     cell_size, cell_size);
   }
 
   this->ui->tabWidget->setCurrentIndex(1);
 };
-void s21::Snake_Desktop_Render::PauseScreen_Handler(QPainter *paint) {
+void s21::Tetris_Desktop_Render::PauseScreen_Handler(QPainter *paint) {
   this->ui->tabWidget->show();
   this->ui->tabWidget->setCurrentIndex(2);
 };
-void s21::Snake_Desktop_Render::WinScreen_Handler(QPainter *paint) {
+void s21::Tetris_Desktop_Render::WinScreen_Handler(QPainter *paint) {
   this->ui->tabWidget->show();
   this->ui->tabWidget->setCurrentIndex(4);
 };
-void s21::Snake_Desktop_Render::LoseScreen_Handler(QPainter *paint) {
+void s21::Tetris_Desktop_Render::LoseScreen_Handler(QPainter *paint) {
   this->ui->tabWidget->show();
   this->ui->tabWidget->setCurrentIndex(3);
 };

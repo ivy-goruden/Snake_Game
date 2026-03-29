@@ -6,6 +6,10 @@ task.md
 *.a
 *.gcda
 *.gcno
-gui/desktop/snake/build/*
-gui/desktop/snake/.cache
-gui/desktop/snake1/*
+gui/desktop/Snake/.q*
+gui/desktop/Snake/qtcsettings.cmake
+gui/desktop/Snake/*.cmake
+gui/desktop/Snake/CMakeCache.txt
+gui/desktop/Snake/Testing
+gui/desktop/Snake/Snake_autogen
+gui/desktop/Snake/CMakeFiles
