@@ -69,5 +69,16 @@ void Tetris_Game::ValidateFixed() {
     }
   }
   UpdateScore(clearedRows);
+  this->StackFixed();
+}
+
+void Tetris_Game::StackFixed(){
+  std::array<std::array<int, WIDTH>, HEIGHT> newFixed;
+  for (int i = HEIGHT - 1, j = HEIGHT - 1; i >= 0; i--) {
+    if (this->fixed[i] != std::array<int, WIDTH>()) {
+      newFixed[j--] = this->fixed[i];
+    }
+  }
+  this->fixed = newFixed;
 }
 }  // namespace s21

@@ -1,6 +1,7 @@
 #include <cstddef>
 
 #include "../../../brick_game/models/controller.h"
+#include "../../../brick_game/tetris/tetris.hpp"
 #include "tetris_desktop_render.h"
 namespace s21 {
 class QT_Tetris_Controller : public QObject, public Controller {
@@ -18,5 +19,6 @@ class QT_Tetris_Controller : public QObject, public Controller {
   void Run() override;
   bool Tick() override;
   void onTick();
+  ~QT_Tetris_Controller() = default;
 };
 }  // namespace s21

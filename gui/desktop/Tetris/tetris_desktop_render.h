@@ -9,7 +9,9 @@
 
 #include "../../../brick_game/globals.h"
 #include "../../../brick_game/models/render.h"
-#include "../../../brick_game/tetris/tetris.hpp"
+#include "../../../brick_game/tetris/frontend.hpp"
+#include "build/Qt_6_10_2_for_macOS-Debug/Tetris_autogen/include/build/Qt_6_10_2_for_macOS-Debug/Tetris_autogen/include/ui_tetris_desktop_render.h"
+#include "next_figure.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -31,6 +33,7 @@ class Tetris_Desktop_Render : public QMainWindow, public s21::Render {
   void UpdateState(s21::Frontend_Interface* model) override;
   State Get_State();
   bool isRunning();
+  void set_FigureWidget(next_figure*);
 
  private slots:
   void on_tabWidget_currentChanged(int index);
@@ -40,12 +43,15 @@ class Tetris_Desktop_Render : public QMainWindow, public s21::Render {
  private:
   s21::TetrisFrontendData* model;
   Ui::Tetris_Desktop_Render* ui;
+  next_figure* nextFigure;
   int W_HEIGHT = 600;
   int W_WIDTH = 800;
   void keyPressEvent(QKeyEvent* event) override;
   void paintEvent(QPaintEvent* event) override;
   typedef bool (Tetris_Desktop_Render::*InputHandler)(int);
   typedef void (Tetris_Desktop_Render::*ScreenHandler)(QPainter*);
+  void configure_text(QTextEdit* textEdit);
+  void configure_widgets();
   int height;
   int width;
   int start_y;

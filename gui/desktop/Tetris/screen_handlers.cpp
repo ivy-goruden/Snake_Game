@@ -1,7 +1,7 @@
 #include <QGraphicsRectItem>
 #include <QScreen>
 
-#include "build/tetris_autogen/include/ui_tetris_desktop_render.h"
+#include "build/Qt_6_10_2_for_macOS-Debug/Tetris_autogen/include/build/Qt_6_10_2_for_macOS-Debug/Tetris_autogen/include/ui_tetris_desktop_render.h"
 #include "tetris_desktop_render.h"
 
 void s21::Tetris_Desktop_Render::WaitingScreen_Handler(QPainter *paint) {
@@ -11,12 +11,13 @@ void s21::Tetris_Desktop_Render::WaitingScreen_Handler(QPainter *paint) {
 void s21::Tetris_Desktop_Render::MoveScreen_Handler(QPainter *paint) {
   this->ui->tabWidget->hide();
 
-  auto field = this->model->GetField();
+  matrix_t field = this->model->GetField();
+  
   paint->fillRect(rect(), Qt::black);
 
-  int offset_y = 50;
+  int offset_y = 20;
   int cell_size = (this->W_HEIGHT - 2 * offset_y) / HEIGHT;
-  int offset_x = (this->W_WIDTH - cell_size * 10) / 2;
+  int offset_x = (this->W_WIDTH - cell_size * WIDTH) / 2;
 
   paint->setPen(Qt::gray);
   for (int i = 0; i <= WIDTH; ++i) {
@@ -28,12 +29,14 @@ void s21::Tetris_Desktop_Render::MoveScreen_Handler(QPainter *paint) {
                     offset_x + WIDTH * cell_size, offset_y + i * cell_size);
   }
   paint->setBrush(Qt::white);
-  for (auto i = 0; i < field.size(); i++) {
-    paint->drawRect(offset_x + i->x * cell_size, offset_y + i->y * cell_size,
-                    cell_size, cell_size);
+  for (int i = 0; i < HEIGHT; i++) {
+    for (int x = 0; x < WIDTH; x++) {
+      if (field[i][x] == 1) {
+        paint->drawRect(offset_x + x * cell_size, offset_y + i * cell_size,
+                        cell_size, cell_size);
+      }
+    }
   }
-
-  this->ui->tabWidget->setCurrentIndex(1);
 };
 void s21::Tetris_Desktop_Render::PauseScreen_Handler(QPainter *paint) {
   this->ui->tabWidget->show();

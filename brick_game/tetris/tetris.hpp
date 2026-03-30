@@ -35,7 +35,7 @@ class Tetris_Game : public s21::GameModel, public s21::TetrisFrontendData {
   void AccelerateFigure();
   void RotateFigure();
   void ValidateFixed();
-
+  void StackFixed();
   // triggers
 
   bool isCollision();

@@ -1,4 +1,4 @@
-#include "Tetris_desktop_render.h"
+#include "tetris_desktop_render.h"
 
 bool s21::Tetris_Desktop_Render::Waiting_Handler(int key) {
   switch (key) {

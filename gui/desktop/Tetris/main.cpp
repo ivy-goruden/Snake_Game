@@ -1,6 +1,7 @@
 #include <QApplication>
 #include <QCoreApplication>
 
+#include "../../../brick_game/tetris/tetris.hpp"
 #include "desktop_tetris_controller.h"
 #include "tetris_desktop_render.h"
 

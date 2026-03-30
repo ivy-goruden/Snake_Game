@@ -2,6 +2,7 @@
 
 #include <QTimer>
 
+#include "../../../brick_game/models/controller.h"
 #include "tetris_desktop_render.h"
 using namespace s21;
 QT_Tetris_Controller::QT_Tetris_Controller(Tetris_Game *model,
